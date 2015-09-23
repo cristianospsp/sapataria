@@ -10,6 +10,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <deltaspike.version>1.5.0</deltaspike.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -105,14 +106,53 @@
       <version>1.0.0.Final</version>
       <scope>compile</scope>
     </dependency>
+
+
+
+	<dependency>
+	    <groupId>org.apache.deltaspike.core</groupId>
+	    <artifactId>deltaspike-core-api</artifactId>
+	    <version>${deltaspike.version}</version>
+	    <scope>compile</scope>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.apache.deltaspike.core</groupId>
+	    <artifactId>deltaspike-core-impl</artifactId>
+	    <version>${deltaspike.version}</version>
+	    <scope>runtime</scope>
+	</dependency>
+
+
+
+	<dependency>
+	    <groupId>org.apache.deltaspike.modules</groupId>
+	    <artifactId>deltaspike-jpa-module-api</artifactId>
+	    <version>${deltaspike.version}</version>
+	    <scope>compile</scope>
+	</dependency>
+
+	<dependency>
+	    <groupId>org.apache.deltaspike.modules</groupId>
+	    <artifactId>deltaspike-jpa-module-impl</artifactId>
+	    <version>${deltaspike.version}</version>
+	    <scope>runtime</scope>
+	</dependency>
+
+
+
+
+
   </dependencies>
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
         <configuration>
-          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <source>1.8</source>
+          <target>1.8</target>
         </configuration>
       </plugin>
     </plugins>
