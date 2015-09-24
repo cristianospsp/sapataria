@@ -9,4 +9,4 @@ If you are in ServletContainer, like Tomcat or Jetty, alter your pom.xml in orde
 
 You need to change your **persistence.xml** file and put your login, password and url information about the database.
   	
-
+Projeto da sapataria do cristiano
