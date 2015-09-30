@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      <!--xmlns:o="http://omnifaces.org/ui">-->
+    <h:head>
+        <!--<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>-->
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+
+        <title>Sapataria - The Global Shoes</title>
+
+        <h:outputStylesheet name="css/bootstrap.min.css" library="bootstrap-3.3"></h:outputStylesheet>
+        <h:outputStylesheet name="css/metisMenu/metisMenu.min.css" library="bootstrap-plugin"></h:outputStylesheet>
+        <h:outputStylesheet name="css/timeline/timeline.css" library="bootstrap-plugin"></h:outputStylesheet>
+        <h:outputStylesheet name="css/sb-admin-2.css" library="default"></h:outputStylesheet>
+        <h:outputStylesheet name="css/morris-chart/morris.css" library="bootstrap-plugin"></h:outputStylesheet>
+        <h:outputStylesheet name="4.3.0/css/font-awesome.min.css" library="font-awesome"></h:outputStylesheet>
+        <h:outputStylesheet library="css" name="saog.css"></h:outputStylesheet>
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        
+        <!--<o:conditionalComment if="lt IE 9">
+            <h:outputScript library="js" name="html5shiv.js"/>
+            <h:outputScript library="js" name="respond.min.js"/>
+        </o:conditionalComment>-->
+
+    </h:head>
+    <h:body>
+        <p:messages autoUpdate="true" showDetail="true" showSummary="true"/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-md-offset-4">
+                    <div class="login-panel panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                Acesso Restrito
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <form jsf:id="login" role="form">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label jsf:for="usuario">Usuario</label>
+                                        <input class="form-control" 
+                                               placeholder="Usuario" type="text"
+                                               jsf:id="usuario" autofocus="true" />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label jsf:for="senha">Senha</label>
+                                        <input class="form-control" placeholder="Password" jsf:id="senha"
+                                               type="password" jsf:value=""/>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-3 pull-right">
+                                            <a jsf:action="#" jsf:id="logar"
+                                               class="btn btn-sm btn-primary btn-block">Login</a>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h:outputScript library="primefaces" name="jquery/jquery.js" />
+        <h:outputScript library="bootstrap-3.3" name="js/bootstrap.min.js" />
+        <h:outputScript library="bootstrap-plugin" name="js/metisMenu/metisMenu.min.js" />
+        <h:outputScript library="bootstrap-plugin" name="js/morris/raphael.min.js" />
+        <h:outputScript library="default" name="js/sb-admin-2.js" />
+    </h:body>
+</html>
+
