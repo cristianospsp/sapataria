@@ -2,64 +2,106 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
-      <!--xmlns:o="http://omnifaces.org/ui">-->
-    <h:head>
-        <!--<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>-->
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:of="http://omnifaces.org/functions">
 
-        <title>Sapataria - The Global Shoes</title>
+<ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
+    <ui:define name="page-header">
+        Cadastro de Produto
+    </ui:define>
 
-        <h:outputStylesheet name="css/bootstrap.min.css" library="bootstrap-3.3"></h:outputStylesheet>
-        <h:outputStylesheet name="css/metisMenu/metisMenu.min.css" library="bootstrap-plugin"></h:outputStylesheet>
-        <h:outputStylesheet name="css/timeline/timeline.css" library="bootstrap-plugin"></h:outputStylesheet>
-        <h:outputStylesheet name="css/sb-admin-2.css" library="default"></h:outputStylesheet>
-        <h:outputStylesheet name="css/morris-chart/morris.css" library="bootstrap-plugin"></h:outputStylesheet>
-        <h:outputStylesheet name="4.3.0/css/font-awesome.min.css" library="font-awesome"></h:outputStylesheet>
-        <h:outputStylesheet library="css" name="saog.css"></h:outputStylesheet>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        
-        <!--<o:conditionalComment if="lt IE 9">
-            <h:outputScript library="js" name="html5shiv.js"/>
-            <h:outputScript library="js" name="respond.min.js"/>
-        </o:conditionalComment>-->
-
-    </h:head>
-    <h:body>
-        <p:messages autoUpdate="true" showDetail="true" showSummary="true"/>
-        <div class="container">
+    <ui:define name="corpo">
+        <h:form id="form1">
             <div class="row">
-                <div class="col-md-5 col-md-offset-4">
-                    <div class="login-panel panel panel-primary">
+                <div class="col-lg-9">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
-
-                            <h3 class="panel-title">
-                                Cadastro de Funcionário
-                            </h3>
+                            Produto
                         </div>
                         <div class="panel-body">
-                            <form jsf:id="novo-funcionario" role="form">
-                                <fieldset>
+                            <div id="id-painel-body">
+                                <div id="id-painel-dados-produto">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Preencha os dados para o novo Produto
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="form-group col-lg-12">
+                                                    <label>Nome</label>
+                                                    <input id="id-input-nome" value="" maxlength="50"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-lg-12">
+                                                    <div class="form-group col-lg-12">
+                                                        <label>Cor</label>
+                                                        <input id="id-input-cor" value="" maxlength="20"/>
+                                                    </div>
+                                                </div>
 
-                                </fieldset>
-                            </form>
+                                            </div>
+
+                                            <h6/>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="pull-left">
+                                                        <div class="pull-left">
+                                                            <button jsf:id="id-bt-voltar" class="btn btn-default"
+                                                                    jsf:outcome="lista" title="voltar">
+                                                                Voltar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="pull-right">
+                                                        <button jsf:id="id-btn-ver-resumo"
+                                                                class="btn btn-primary"
+                                                                title="Próximo">
+                                                            Próximo
+                                                            <f:ajax execute="@form" delay="500" render="@form"/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
+                <h:panelGroup id="id-painel-inspetor">
+                    <div class="col-lg-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-user"></span> Inspetor
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-arrow-right fa-fw"></i>
+                                        <strong>Campo Nome</strong>, preenchimento obrigatório.
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <h4></h4>
+                            </div>
+                        </div>
+                    </div>
+                </h:panelGroup>
             </div>
-        </div>
-        
-        <h:outputScript library="primefaces" name="jquery/jquery.js" />
-        <h:outputScript library="bootstrap-3.3" name="js/bootstrap.min.js" />
-        <h:outputScript library="bootstrap-plugin" name="js/metisMenu/metisMenu.min.js" />
-        <h:outputScript library="bootstrap-plugin" name="js/morris/raphael.min.js" />
-        <h:outputScript library="default" name="js/sb-admin-2.js" />
-    </h:body>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
 </html>
 
