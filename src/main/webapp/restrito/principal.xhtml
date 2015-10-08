@@ -1,15 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
-<h:head>
-    <title>Tela Principal da SATAPATARIA</title>
-</h:head>
-<h:body>
-    <h:panelGrid columns="1">
-        <h2>Tela Principal da SATAPATARIA</h2>
-    </h:panelGrid>
-</h:body>
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="/WEB-INF/templates/template.xhtml">
+    <ui:define name="conteudo">
+        <h:form>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Painel de Controle</h1>
+                </div>
+            </div>
+
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
 </html>
+
