@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html lang="pt-BR"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:o="http://omnifaces.org/ui">
+
+<h:head>
+    <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Prodesp"/>
+
+    <title>Sistema de Apoio Operacional e Gestão - SAOG</title>
+    <h:outputStylesheet name="css/bootstrap.min.css" library="bootstrap-3.3"></h:outputStylesheet>
+    <h:outputStylesheet name="css/bootstrap-switch.min.css" library="bootstrap-3.3"></h:outputStylesheet>
+    <h:outputStylesheet name="css/metisMenu/metisMenu.min.css" library="bootstrap-plugin"></h:outputStylesheet>
+    <h:outputStylesheet name="css/timeline/timeline.css" library="bootstrap-plugin"></h:outputStylesheet>
+    <h:outputStylesheet name="css/sb-admin-2.css" library="default"></h:outputStylesheet>
+    <h:outputStylesheet name="css/morris-chart/morris.css" library="bootstrap-plugin"></h:outputStylesheet>
+    <h:outputStylesheet name="4.3.0/css/font-awesome.min.css" library="font-awesome"></h:outputStylesheet>
+    <h:outputStylesheet name="css/normalize.css" library="bootstrap-3.3"></h:outputStylesheet>
+    <h:outputStylesheet library="css" name="saog.css"></h:outputStylesheet>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <o:conditionalComment if="lt IE 9">
+        <h:outputScript library="js" name="html5shiv.js"/>
+        <h:outputScript library="js" name="respond.min.js"/>
+    </o:conditionalComment>
+
+    <o:conditionalComment if="lte IE 8">
+        <h:outputScript library="js" name="excanvas.compiled.js"/>
+    </o:conditionalComment>
+
+    <script jsf:library="js" jsf:name="modernizr.custom.08887.js"></script>
+
+
+</h:head>
+<h:body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="template.xhtml">
+                    <!--<h:graphicImage library="images" name="saog.gif" styleClass="logo"/>-->
+                </a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> #{usuarioLogado.nome} <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <form jsf:id="logout">
+                                <a jsf:action="#{securityController.logout()}"><i
+                                        class="fa fa-sign-out fa-fw"></i>#{msg.label_logout}</a>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a jsf:outcome="/restrito/principal.xhtml">
+                                <i class="fa fa-desktop"></i> Principal
+                            </a>
+                        </li>
+                        <li>
+                            <a jsf:outcome="/restrito/funcionario/lista.xhtml">
+                                <i class="glyphicon glyphicon-grain"></i> Funcionários
+                            </a>
+                        </li>
+                        <li>
+                            <a jsf:outcome="/restrito/produto/lista.xhtml">
+                                <i class="glyphicon glyphicon-grain"></i> Produtos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-grain"></i> Vendas
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="row">
+                <p:growl autoUpdate="true" globalOnly="true" for="global" showSummary="true" showDetail="true"/>
+                <p:growl autoUpdate="true" severity="warn,error" globalOnly="false" showDetail="true" life="12000"/>
+                <p:ajaxStatus styleClass="ajax-status"
+                              oncomplete="onLoadMasks(); onloadHtml5Input(); onSwitchCheckboxLoad();">
+                    <f:facet name="start">
+                        <p:graphicImage library="images" name="gif-load.gif"/>
+                    </f:facet>
+
+                    <f:facet name="complete">
+                        <h:outputText value=""/>
+                    </f:facet>
+                </p:ajaxStatus>
+            </div>
+            <div class="row">
+                <div class="page-wrapper conteudo" jsf:id="div-principal-corpo">
+                    <ui:insert name="conteudo">
+                        Conteúdo
+                    </ui:insert>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <h:outputScript library="primefaces" name="jquery/jquery.js"/>
+    <h:outputScript library="bootstrap-3.3" name="js/bootstrap.min.js"/>
+    <h:outputScript library="bootstrap-3.3" name="js/bootstrap-switch.min.js"/>
+    <h:outputScript library="bootstrap-plugin" name="js/metisMenu/metisMenu.min.js"/>
+    <h:outputScript library="bootstrap-plugin" name="js/morris/raphael.min.js"/>
+    <h:outputScript library="default" name="js/sb-admin-2.js"/>
+    <h:outputScript library="js" name="jquery-ui.js"></h:outputScript>
+
+    <!--    <h:outputScript library="js" name="jquery.inputmask.js"/>-->
+    <h:outputScript library="js" name="jquery.mask.js"/>
+    <h:outputScript library="js" name="saog.js"/>
+
+    <script type="text/javascript">
+        // <![CDATA[
+
+        $.fn.bootstrapSwitch.defaults.onText = '#{msg[true]}';
+        $.fn.bootstrapSwitch.defaults.offText = '#{msg[false]}';
+        $.fn.bootstrapSwitch.defaults.size = 'small';
+
+        $(onLoadMasks);
+        $(onloadHtml5Input);
+        $(onSwitchCheckboxLoad());
+        // // ]]>
+    </script>
+
+    <ui:insert name="java-script">
+
+    </ui:insert>
+
+</h:body>
+</html>

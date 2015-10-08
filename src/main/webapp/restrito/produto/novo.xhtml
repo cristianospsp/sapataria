@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:of="http://omnifaces.org/functions">
+
+<ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
+    <ui:define name="page-header">
+        Cadastro de Produto
+    </ui:define>
+
+    <ui:define name="corpo">
+        <h:form id="form1">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            Produto
+                        </div>
+                        <div class="panel-body">
+                            <div id="id-painel-body">
+                                <div id="id-painel-dados-produto">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            Preencha os dados para o novo Produto
+                                        </div>
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="form-group col-lg-12">
+                                                    <label>Nome</label>
+                                                    <input id="id-input-nome" value="" maxlength="50"/>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-group col-lg-12">
+                                                    <div class="form-group col-lg-12">
+                                                        <label>Cor</label>
+                                                        <input id="id-input-cor" value="" maxlength="20"/>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <h6/>
+                                        </div>
+                                        <div class="panel-footer">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="pull-left">
+                                                        <div class="pull-left">
+                                                            <button jsf:id="id-bt-voltar" class="btn btn-default"
+                                                                    jsf:outcome="lista" title="voltar">
+                                                                Voltar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6">
+                                                    <div class="pull-right">
+                                                        <button jsf:id="id-btn-ver-resumo"
+                                                                class="btn btn-primary"
+                                                                title="Próximo">
+                                                            Próximo
+                                                            <f:ajax execute="@form" delay="500" render="@form"/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h:panelGroup id="id-painel-inspetor">
+                    <div class="col-lg-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-user"></span> Inspetor
+                            </div>
+                            <div class="panel-body">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">
+                                        <i class="fa fa-arrow-right fa-fw"></i>
+                                        <strong>Campo Nome</strong>, preenchimento obrigatório.
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <h4></h4>
+                            </div>
+                        </div>
+                    </div>
+                </h:panelGroup>
+            </div>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
+</html>
+
