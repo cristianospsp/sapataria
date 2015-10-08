@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html lang="pt-BR"
-				xmlns="http://www.w3.org/1999/xhtml"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:o="http://omnifaces.org/ui"
-      xmlns:shiro="http://shiro.apache.org/tags">
+      xmlns:o="http://omnifaces.org/ui">
 
 <h:head>
     <link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>
@@ -55,80 +54,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="template.xhtml">
-                    <h:graphicImage library="images" name="saog.gif" styleClass="logo"/>
+                    <!--<h:graphicImage library="images" name="saog.gif" styleClass="logo"/>-->
                 </a>
             </div>
 
             <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-alerts">
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small">12 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">
-                                <div>
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small">4 minutes ago</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a class="text-center" href="#">
-                                <strong>See All Alerts</strong>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> #{usuarioLogado.nome} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li>
-                            <a jsf:outcome="/restrito/usuarios/perfil"><i
-                                    class="fa fa-user fa-fw"></i> #{msg.label_usuario_perfil}</a>
-                        </li>
-                        <li class="divider"></li>
                         <li>
                             <form jsf:id="logout">
                                 <a jsf:action="#{securityController.logout()}"><i
@@ -143,284 +79,26 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <h:link outcome="/restrito/dashboard"> <i class="fa fa-desktop"></i> Painel de Controle
-                            </h:link>
+                            <a jsf:outcome="/restrito/principal.xhtml">
+                                <i class="fa fa-desktop"></i> Principal
+                            </a>
                         </li>
                         <li>
-                            <a href="#"><i class="glyphicon glyphicon-grain"></i> Planejamento<span
-                                    class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <shiro:hasPermission name="LISTAR_LOCAL_INSTALACAO">
-                                    <li>
-                                        <a jsf:outcome="/restrito/planejamento/local-instalacao/lista"><i
-                                                class="glyphicon glyphicon-flag"></i> #{msg.label_mnu_planejemanto_local_instalacao}
-                                        </a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_SIGNATARIO_BLOCO_IP">
-                                    <li>
-                                        <a jsf:outcome="/restrito/planejamento/orgao-blocoip/lista"><i
-                                                class="glyphicon glyphicon-link"></i> Órgão x Bloco IP</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_PROJETO">
-                                    <li>
-                                        <a jsf:outcome="/restrito/planejamento/projeto/lista"><i
-                                                class="fa fa-rocket"></i> Projetos</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_ORGAO_PROJETO">
-                                    <li>
-                                        <a jsf:outcome="/restrito/planejamento/orgao-projeto/lista"><i
-                                                class="glyphicon glyphicon-link"></i> Órgão x Projeto</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_PLANEJAMENTO">
-                                    <li>
-                                        <a jsf:outcome="/restrito/planejamento/planejamentos/lista"><i
-                                                class="glyphicon glyphicon-grain"></i> Planejamentos</a>
-                                    </li>
-                                </shiro:hasPermission>
-                            </ul>
+                            <a jsf:outcome="/restrito/funcionario/lista.xhtml">
+                                <i class="glyphicon glyphicon-grain"></i> Funcionários
+                            </a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Conectividade<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <shiro:hasPermission name="LISTAR_APLICACAO_MULTICAST">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/aplicacao-multicast/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> Aplicação Multicast</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_BLOCO_IP">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/bloco-ip/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> Bloco IP</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_CIRCUITO">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/circuitos/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> Circuitos</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_COS">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/cos/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> #{msg.label_perfil_cos}</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_UP">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/up/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> UP</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="LISTAR_ROTEADOR">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/roteadores/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> Roteadores</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                               <!-- <shiro:hasPermission name="LISTAR_TUNEL_GRE">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/tunel-gre/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> Túnel GRE</a>
-                                    </li>
-                                </shiro:hasPermission>-->
-
-                                <shiro:hasPermission name="LISTAR_POP">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/pops/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> PoPs</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <!--<shiro:hasPermission name="LISTAR_UPI">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/upi/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> UPIs</a>
-                                    </li>
-                                </shiro:hasPermission>-->
-
-                                <shiro:hasPermission name="LISTAR_VPN">
-                                    <li>
-                                        <a jsf:outcome="/restrito/conectividade/vpn/lista"><i
-                                                class="fa fa-sitemap fa-fw"></i> VPN</a>
-                                    </li>
-                                </shiro:hasPermission>
-                            </ul>
+                            <a jsf:outcome="/restrito/produto/lista.xhtml">
+                                <i class="glyphicon glyphicon-grain"></i> Produtos
+                            </a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="fa fa-database"></i> Unidade de Rede <span class="fa arrow"></span></a>
-                            <shiro:hasPermission name="SITUACAO_SERVICO">
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a jsf:outcome="/restrito/situacao-servico/situacao">Situação do Serviço</a>
-                                    </li>
-                                </ul>
-                            </shiro:hasPermission>
-                        </li>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-th-list"></i> Solicitações <span
-                                    class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-
-                                <shiro:hasPermission name="ACOMPANHAR_SOLICITACAO">
-                                    <li>
-                                        <a jsf:outcome="/restrito/solicitacao/acompanhamento">Acompanhamento</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <shiro:hasPermission name="CRIAR_ATIVACAO">
-                                    <li>
-                                        <a jsf:outcome="/restrito/solicitacao/ativacao/nova-ativacao">Ativação do Serviço</a>
-                                    </li>
-                                </shiro:hasPermission>
-
-                                <!--
-                                    menu comentado, implementar qndo levantar os requisitos
-                                <li>
-                                    <a href="template">Configuração de Estrutura da UPI</a>
-                                </li>-->
-                            </ul>
-                        </li>
-                        <shiro:hasPermission name="ACOMPANHAR_INCIDENTE">
-                            <li>
-                                <a href="#"><i class="fa fa-bug"></i> Incidente <span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a jsf:outcome="/restrito/incidente/acompanhamento">Incidentes</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </shiro:hasPermission>
-                        <li>
-                            <a href="#"><i class="glyphicon glyphicon-usd"></i> Faturamento <span
-                                    class="fa arrow"></span></a>
-
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a jsf:outcome="/restrito/faturamento/contrato/lista">Contrato</a>
-                                </li>
-                            </ul>
-
-                            <shiro:hasPermission name="LISTAR_LOCAL_ENTREGA_FATURA">
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a jsf:outcome="/restrito/faturamento/local-entrega-fatura/lista">Local Entrega Fatura</a>
-                                    </li>
-                                </ul>
-                            </shiro:hasPermission>
-
-                            <shiro:hasPermission name="LISTAR_ORGAO_X_LOCAL_ENTREGA_FATURA">
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a jsf:outcome="/restrito/faturamento/orgao-local-entrega-fatura/lista">Órgão X Local Entrega Fatura</a>
-                                    </li>
-                                </ul>
-                            </shiro:hasPermission>
+                                <i class="glyphicon glyphicon-grain"></i> Vendas
+                            </a>
                         </li>
 
-                        <shiro:hasAnyPermission name="LISTAR_ORGAO, LISTAR_PEDIDO_ORGAO">
-                            <li>
-                                <a href="#"><i class="glyphicon glyphicon-home"></i>  #{msg.label_mnu_orgao} <span
-                                        class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <shiro:hasPermission name="LISTAR_ORGAO">
-                                        <li>
-                                            <a jsf:outcome="/restrito/orgaos/pedidos/lista">
-                                                <i class="glyphicon glyphicon-tag"/>
-                                                    #{msg.label_mnu_pedidos}
-                                            </a>
-                                        </li>
-                                    </shiro:hasPermission>
-
-                                    <shiro:hasPermission name="LISTAR_PEDIDO_ORGAO">
-                                        <li>
-                                            <a jsf:outcome="/restrito/orgaos/lista">
-                                                <i class="glyphicon glyphicon-home"/>
-                                                    #{msg.label_mnu_orgaos}
-                                            </a>
-                                        </li>
-                                    </shiro:hasPermission>
-                                </ul>
-                            </li>
-                        </shiro:hasAnyPermission>
-
-                        <shiro:hasAnyPermission name="LISTAR_CEP, LISTAR_PEDIDO_CEP">
-                            <li>
-                                <a href="#"><i class="glyphicon glyphicon-map-marker"></i> #{msg.label_mnu_cep}<span
-                                        class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <shiro:hasPermission name="LISTAR_PEDIDO_CEP">
-                                        <li>
-                                            <a jsf:outcome="/restrito/cep/pedido/lista">
-                                                <i class="glyphicon glyphicon-tag"></i>
-                                                #{msg.label_mnu_pedidos}
-                                            </a>
-                                        </li>
-                                    </shiro:hasPermission>
-                                    <shiro:hasPermission name="LISTAR_CEP">
-                                        <li>
-                                            <a jsf:outcome="/restrito/cep/lista">
-                                                <i class="glyphicon glyphicon-map-marker"></i>
-                                                #{msg.label_mnu_ceps}
-                                            </a>
-                                        </li>
-                                    </shiro:hasPermission>
-                                </ul>
-                            </li>
-                        </shiro:hasAnyPermission>
-
-                        <shiro:hasAnyPermission name="LISTAR_USUARIOS, LISTAR_GRUPO_USUARIOS">
-                            <li>
-                                <a href="#"><i class="fa fa-user fa-fw"></i> #{msg.label_mnu_gestao_usuario}<span
-                                        class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-
-
-                                    <!--<shiro:hasAnyPermission name="CONSULTAR_PERMISSOES,ADICIONAR_PERMISSOES">
-                                        <li>
-                                            <a jsf:outcome="/restrito/usuarios/gestao-permissao">
-                                                <i class="fa fa-group fa-fw"></i>
-                                                #{msg.label_mnu_gestao_permissao_usuario}
-                                            </a>
-                                        </li>
-                                    </shiro:hasAnyPermission>-->
-
-
-                                    <shiro:hasPermission name="LISTAR_USUARIOS">
-                                        <li>
-                                            <a jsf:outcome="/restrito/usuarios/lista">
-                                                <i class="fa fa-user fa-fw"></i>
-                                                #{msg.label_mnu_usuario}
-                                            </a>
-                                        </li>
-                                    </shiro:hasPermission>
-
-                                    <shiro:hasPermission name="LISTAR_GRUPO_USUARIOS">
-                                        <li>
-                                            <a jsf:outcome="/restrito/usuarios/grupos">
-                                                <i class="fa fa-group fa-fw"></i>
-                                                #{msg.label_mnu_gestao_grupos}
-                                            </a>
-                                        </li>
-                                    </shiro:hasPermission>
-                                </ul>
-                            </li>
-                        </shiro:hasAnyPermission>
                     </ul>
                 </div>
             </div>
