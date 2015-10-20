@@ -38,29 +38,42 @@
                                 </div>
                             </div>
                             <div class="panel-body">
-
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <button class="btn btn-default btn-xs pull-right"
+                                                title="Novo" jsf:id="id-atualizar"
+                                                jsf:action="#{vendaController.refresh}">
+                                            <span class="fa fa-refresh"> </span> Atualizar
+                                            <!--<f:ajax render="@form" execute="@form"/>-->
+                                        </button>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <h:panelGroup id="id-tabela" layout="block" rendered="true">
                                             <p:dataTable id="id-produtos-filtrados"
-                                                         value=""
-                                                         var="produto"
+                                                         value="#{vendaController.vendas}"
+                                                         var="venda"
                                                          tableStyleClass="table table-striped table-bordered table-hover"
                                                          emptyMessage="Nenhuma venda para o dia encontrada..."
                                                          paginator="true"
                                                          rows="5"
                                                          paginatorPosition="bottom">
 
-                                                <p:column headerText="Vendedor" width="70%">
-                                                    Teste teste teste
+                                                <p:column headerText="Vendedor" width="55%">
+                                                    #{venda.nomeVendedor}
                                                 </p:column>
 
                                                 <p:column headerText="Código Venda" width="15%">
-                                                    123456789
+                                                    #{venda.id}
                                                 </p:column>
 
                                                 <p:column headerText="Valor" width="15%">
-                                                    R$ 350,00
+                                                    R$ #{venda.totalVenda}
+                                                </p:column>
+
+                                                <p:column headerText="Data/Hora" width="15%">
+                                                    #{venda.dataVenda}
                                                 </p:column>
 
                                             </p:dataTable>
