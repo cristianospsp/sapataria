@@ -7,6 +7,10 @@ package br.com.dwd.sapataria.controller;
 
 import br.com.dwd.sapataria.model.Usuario;
 import br.com.dwd.sapataria.task.SecurityTask;
+
+import org.hibernate.Session;
+import org.hibernate.mapping.Map;
+import org.omnifaces.servlet.HttpServletResponseOutputWrapper;
 import org.omnifaces.util.Faces;
 
 import javax.enterprise.context.RequestScoped;
@@ -14,6 +18,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.Serializable;
@@ -49,10 +54,9 @@ public class SecurityController implements Serializable {
 
 	public void logar() throws IOException {
 
-		//TODO precisa aplicar algum esquema de criptografia na senha, tipo md5
+		// TODO precisa aplicar algum esquema de criptografia na senha, tipo md5
 
 		Usuario usuarioEcontrado = task.findUserByLoginAndPss(login, senha);
-
 
 		if (usuarioEcontrado != null) {
 			HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
@@ -66,13 +70,9 @@ public class SecurityController implements Serializable {
 
 	}
 
-	public String logout() throws IOException {
-		//TODO falta implementar o LOGOUT
-
-	     /* logger.info("fazendo logout...");
-	      currentUser.logout();*/
-		//usuarioInfo.reload();
-		//Faces.invalidateSession();
-		return null; /*LOGIN+"?faces-redirect=true";*/
+	public void logout() throws IOException {
+		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+		session.invalidate();
+		Faces.redirect(LOGIN);
 	}
 }
