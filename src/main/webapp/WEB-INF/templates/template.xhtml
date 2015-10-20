@@ -62,13 +62,13 @@
 
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i> #{usuarioLogado.nome} <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i> Olá, #{login.nome} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li>
                             <form jsf:id="logout">
-                                <a jsf:action="#{securityController.logout()}"><i
-                                        class="fa fa-sign-out fa-fw"></i>#{msg.label_logout}</a>
+                                <a jsf:action="#{securityController.logout}"><i
+                                        class="fa fa-sign-out fa-fw"></i>Sair #{msg.label_logout}</a>
                             </form>
                         </li>
                     </ul>

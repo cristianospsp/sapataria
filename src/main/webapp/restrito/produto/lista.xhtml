@@ -15,7 +15,6 @@
     <ui:define name="page-header">
         LISTA DE PRODUTOS
     </ui:define>
-
     <ui:define name="corpo">
 
         <div class="row">
@@ -73,11 +72,19 @@
                                                          paginator="true"
                                                          rows="5"
                                                          paginatorPosition="bottom">
-
-                                                <p:column headerText="Produtos">
-                                                    Nome
+												<p:column headerText="Descrição">
+                                                   
                                                 </p:column>
 
+                                                <p:column headerText="Fabricante">
+                                                    
+                                                </p:column>
+                                                	<p:column headerText="Qtd Estoque">
+                                                   
+                                                </p:column>
+                                                <p:column headerText="Fornecedor">
+                                                   
+                                                </p:column>
                                                 <p:column headerText="" styleClass="column-action">
                                                     <button class="btn btn-default" jsf:title="Ver" >
                                                         <span class="glyphicon glyphicon-eye-open"></span>

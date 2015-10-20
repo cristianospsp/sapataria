@@ -24,75 +24,97 @@
 							<div class="col-lg-6">
 
 								<div class="form-group">
-									<label>Descrição: </label> <input class="form-control" />
+									<label>Descrição: </label> <input class="form-control"
+										placeholder="Descrição" type="text" jsf:id="id-descricao"
+										autofocus="true" jsf:required="true"
+										jsf:requiredMessage="Descrição !"
+										jsf:value="#{produtoController.produto.nome}" />
+								</div>
+
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label> Fabricante: </label> <input class="form-control"
+										placeholder="Fabricante" type="text" jsf:id="id-fabricante"
+										jsf:required="true" jsf:requiredMessage="Fabricante !"
+										jsf:value="#{produtoController.produto.fabricante}" />
 								</div>
 
 							</div>
 							<div class="col-lg-6">
 
 								<div class="form-group">
-									<label> Fabricante: </label> <input class="form-control" />
-								</div>
-
-							</div>
-							<div class="col-lg-6">
-
-								<div class="form-group">
-									<label> Código de barras: </label> <input class="form-control" />
+									<label> Código de barras: </label> <input class="form-control"
+										placeholder="Codigo de barras" type="text"
+										jsf:id="id-cod-Barras" jsf:required="true"
+										jsf:requiredMessage="Codigo"
+										jsf:value="#{produtoController.produto.codigoBarras}" />
 								</div>
 
 							</div>
 							<div class="col-lg-2">
 
 								<div class="form-group">
-									<label> Tamanho: </label> <input class="form-control" />
+									<label> Tamanho: </label> <input class="form-control"
+										placeholder="tamanho" type="text" jsf:id="id-tamanho"
+										jsf:required="true" jsf:requiredMessage="Tamanho"
+										jsf:value="#{produtoController.produto.tamanho}" />
 								</div>
-
 							</div>
 							<div class="col-lg-4">
 
 								<div class="form-group">
-									<label> Cor: </label> <input class="form-control" />
+									<label> Cor: </label> <input class="form-control"
+										placeholder="cor" type="text" jsf:id="id-cor"
+										jsf:required="true" jsf:requiredMessage="cor"
+										jsf:value="#{produtoController.produto.cor}" />
 								</div>
 
 							</div>
 							<div class="col-lg-2">
-
 								<div class="form-group">
-									<label> Qtd mínima: </label> <input class="form-control" />
+									<label> Qtd mínima: </label> <input class="form-control"
+										placeholder="" type="text" jsf:id="id-qtd-minima"
+										jsf:required="true" jsf:requiredMessage="Quantidade minima"
+										jsf:value="#{produtoController.produto.qtdMinima}" />
 								</div>
-
 							</div>
 
 							<div class="col-lg-2">
-
 								<div class="form-group">
-									<label> Qtd total: </label> <input class="form-control" />
+									<label> Qtd total: </label> <input class="form-control"
+										placeholder="" type="text" jsf:id="id-qtd-total"
+										jsf:required="true" jsf:requiredMessage="Quantidade total"
+										jsf:value="#{produtoController.produto.qtdTotal}" />
 								</div>
-
 							</div>
 
 							<div class="col-lg-2">
-
 								<div class="form-group">
-									<label> Valor venda: </label> <input class="form-control" />
+									<label> Valor compra: </label> <input class="form-control"
+										placeholder="" type="text" jsf:id="id-vlr-compra"
+										jsf:requid="true" jsf:requiredMessage="Valor de compra !"
+										jsf:value="#{produtoController.produto.vlrCompra}" />
 								</div>
-
 							</div>
-							<div class="col-lg-2">
 
+							<div class="col-lg-2">
 								<div class="form-group">
-									<label> Valor compra: </label> <input class="form-control" />
+									<label> Valor venda: </label> <input class="form-control"
+										placeholder="" type="text" jsf:id="id-vlr-venda"
+										jsf:requid="true" jsf:requiredMessage="Valor de venda!"
+										jsf:value="#{produtoController.produto.vlrVenda}" />
 								</div>
-
 							</div>
 
 							<div class="col-lg-2">
-
 								<div class="form-group">
 									<div class="checkbox">
-										<label> <input type="checkbox" value="true">Produto
-												ativo</input>
+										<label> <input type="checkbox" value="true"
+											checked="true" jsf:id="id-status" jsf:requid="true"
+											jsf:requiredMessage="Status do produto"
+											jsf:value="#{produtoController.produto.status}">
+											Produto ativo</input>
 										</label>
 									</div>
 								</div>
@@ -108,7 +130,9 @@
 											jsf:outcome="lista">Voltar</a>
 									</div>
 									<div class="col-lg-2 pull-right">
-										<a class="btn btn-sm btn-primary btn-block">Salvar</a>
+										<button class="btn btn-sm btn-primary btn-block"
+											jsf:action="#{produtoController.salvar()}"
+											jsf:id="id-btn-salvar">Salvar</button>
 									</div>
 								</div>
 							</div>

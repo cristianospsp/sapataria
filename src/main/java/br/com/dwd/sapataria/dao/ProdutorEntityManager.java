@@ -14,9 +14,16 @@ public class ProdutorEntityManager {
 
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 
+	private static EntityManager entityManager;
+	
 	@Produces
 	public EntityManager criaEntityManager() {
-		return factory.createEntityManager();
+		entityManager = factory.createEntityManager();
+		return entityManager;
 	}
 
+	public static EntityManager getEntityManager() {
+		return entityManager;
+	}
+	
 }
