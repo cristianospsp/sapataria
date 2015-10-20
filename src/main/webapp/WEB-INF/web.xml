@@ -29,23 +29,47 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<!--<servlet>
+		<servlet-name>Jersey REST Service</servlet-name>
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>br.com.dwd.sapataria.ws.SapatariaWebService</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>-->
+
+	<servlet>
+		<servlet-name>Jersey Servlet</servlet-name>
+		<servlet-class>
+			com.sun.jersey.spi.container.servlet.ServletContainer
+		</servlet-class>
+
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>br.com.dwd.sapataria.ws.ApplicationJAXRS</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
 	<filter>
 		<filter-name>ValidaLoginFilter</filter-name>
 		<filter-class>br.com.dwd.sapataria.filter.ValidaLoginFilter</filter-class>
-		<!--<init-param>
-		  <param-name>loginActionURI</param-name>
-		  <param-value>/Servlet/userValidator</param-value>
-		</init-param>-->
 	</filter>
 
 	<filter-mapping>
 		<filter-name>ValidaLoginFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/restrito/*</url-pattern>
 	</filter-mapping>
 
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>Jersey Servlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
