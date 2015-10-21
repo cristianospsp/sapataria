@@ -25,11 +25,17 @@ public class Usuario implements Serializable {
 	@NotNull
 	private String nome;
 	@NotNull
+	private String cpf;
+	@NotNull
 	private String email;
 	@NotNull
 	private String senha;
 	@NotNull
 	private String perfil;
+	@NotNull
+	private String cargo;
+	@NotNull
+	private boolean cadAtivo;
 
 	public Long getId() {
 		return id;
@@ -46,6 +52,15 @@ public class Usuario implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
 
 	public String getEmail() {
 		return email;
@@ -70,4 +85,21 @@ public class Usuario implements Serializable {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public boolean getCadAtivo() {
+		return cadAtivo;
+	}
+
+	public void setCadAtivo(boolean cadAtivo) {
+		this.cadAtivo = cadAtivo;
+	}
+
 }
