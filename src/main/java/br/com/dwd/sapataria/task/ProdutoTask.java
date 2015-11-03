@@ -1,44 +1,57 @@
 package br.com.dwd.sapataria.task;
 
-import br.com.dwd.sapataria.dao.ProdutorEntityManager;
 import br.com.dwd.sapataria.dao.Repository;
 import br.com.dwd.sapataria.model.Produto;
+import org.apache.deltaspike.jpa.api.transaction.Transactional;
 
-import java.io.Serializable;
-import java.security.cert.TrustAnchor;
-
-import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.transaction.Transactional;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 @Named
-@Resource
+//@Resource
 public class ProdutoTask implements Serializable {
 
-	/*@Inject
-	private Repository<Produto> repository;*/
+	@Inject
+	private Repository<Produto> repository;
 
-	private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
-	
+	//private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
+
 	@Transactional
 	public Produto add(Produto produto) {
-		EntityTransaction transaction = entitymanager.getTransaction();
+		/*EntityTransaction transaction = entitymanager.getTransaction();
 		transaction.begin();
 		entitymanager.persist(produto);
-		transaction.commit();
-		//repository.add(produto);
+		transaction.commit();*/
+		produto = repository.add(produto);
 		return produto;
 	}
-	
-	 /*public Produto buscarProduto(Produto descricao){ Map<String, Object> prod
-	  = new HashMap<>(); prod.put("descicao", descricao); List<Produto>
-	  produtos =
-	 
-	 Produto.stream().findFirst().orElse(null); return null; }
-	 */
+
+	public List<Produto> buscarProduto(Produto produto) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("nome", produto.getNome());
+		return repository.listBy(Produto.PRODUTO_FIND_BY_NOME, param);
+	}
+
+	public Produto findByCodigoBarra(Long codigoBarras) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("codigoBarras", codigoBarras);
+		return repository.listBy(Produto.PRODUTO_FIND_BY_CODIGO_BARRA, param).stream().findFirst().orElse(null);
+	}
+
+	public List<Produto> findAll() {
+		return repository.listAll();
+	}
+
+	public void delete(Produto produto) {
+		EntityTransaction transaction = entitymanager.getTransaction();
+		transaction.begin();
+		entitymanager.delete(entitymanager.merge(produto);
+		transaction.commit();
+	}
+
 }
