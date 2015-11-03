@@ -1,11 +1,14 @@
 package br.com.dwd.sapataria.task;
 
+import br.com.dwd.sapataria.dao.ProdutorEntityManager;
 import br.com.dwd.sapataria.dao.Repository;
 import br.com.dwd.sapataria.model.Produto;
 import org.apache.deltaspike.jpa.api.transaction.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +22,7 @@ public class ProdutoTask implements Serializable {
 	@Inject
 	private Repository<Produto> repository;
 
-	//private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
+	private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
 
 	@Transactional
 	public Produto add(Produto produto) {
@@ -48,10 +51,10 @@ public class ProdutoTask implements Serializable {
 	}
 
 	public void delete(Produto produto) {
-		EntityTransaction transaction = entitymanager.getTransaction();
+		/*EntityTransaction transaction = entitymanager.getTransaction();
 		transaction.begin();
 		entitymanager.delete(entitymanager.merge(produto);
-		transaction.commit();
+		transaction.commit();*/
 	}
 
 }
