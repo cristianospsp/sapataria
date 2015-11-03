@@ -2,40 +2,51 @@ package br.com.dwd.sapataria.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import org.apache.deltaspike.core.api.projectstage.ProjectStage.Production;
-
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by Cristiano on 02/10/15.//
  */
 @Entity
-@Table
+@NamedQueries(
+	 {
+			@NamedQuery(
+				 name = Produto.PRODUTO_FIND_BY_NOME,
+				 query = "select p from Produto p where p.nome = :nome"
+			),
+		  @NamedQuery(
+				 name = Produto.PRODUTO_FIND_BY_CODIGO_BARRA,
+				 query = "select p from Produto p where p.codigoBarras = :codigoBarras"
+		  )
+	 })
 public class Produto implements Serializable {
+
+	public static final String PRODUTO_FIND_BY_NOME = "Produto.findByNome";
+	public static final String PRODUTO_FIND_BY_CODIGO_BARRA = "Produto.findByCodigoBarra";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	
-	
+	private Long id;
+
 	private String nome;
-	
+
 	@NotNull
 	@Column
 	private String fabricante;
-	
+
 	@Column
 	@NotNull
 	private long codigoBarras;
-	
+
 	@Column
 	@NotNull
 	private int tamanho;
-	
+
 	@Column
 	@NotNull
 	private String cor;
-	
+
 	@Column
 	@NotNull
 	private int qtdMinima;
@@ -43,23 +54,33 @@ public class Produto implements Serializable {
 	@Column
 	@NotNull
 	private int qtdTotal;
-	
+
 	@Column
 	@NotNull
 	private double vlrVenda;
-	
+
 	@Column
 	@NotNull
 	private double vlrCompra;
-	
+
 	@Column
 	@NotNull
-	private boolean status;  
-	
+	private boolean status;
+
+	public Produto() {
+	}
+
+	public Produto(String nome, String fabricante, String cor, double vlrVenda) {
+		this.nome = nome;
+		this.fabricante = fabricante;
+		this.cor = cor;
+		this.vlrVenda = vlrVenda;
+	}
+
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -79,13 +100,13 @@ public class Produto implements Serializable {
 	public void setFabricante(String fabricante) {
 		this.fabricante = fabricante;
 	}
-	
-	
-	public long getCodigoBarras(){
-		return codigoBarras;		
+
+
+	public long getCodigoBarras() {
+		return codigoBarras;
 	}
-	
-	public void setCodigoBarras(long codigoBarras){
+
+	public void setCodigoBarras(long codigoBarras) {
 		this.codigoBarras = codigoBarras;
 	}
 
@@ -144,5 +165,18 @@ public class Produto implements Serializable {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Produto)) return false;
+		Produto produto = (Produto) o;
+		return Objects.equals(getId(), produto.getId()) &&
+			 Objects.equals(getNome(), produto.getNome());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getNome());
+	}
 }
