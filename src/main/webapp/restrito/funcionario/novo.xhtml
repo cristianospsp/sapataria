@@ -1,65 +1,140 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
-      <!--xmlns:o="http://omnifaces.org/ui">-->
-    <h:head>
-        <!--<link rel="shortcut icon" type="image/x-icon" href="#{resource['images/favicon.ico']}"/>-->
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:of="http://omnifaces.org/functions">
 
-        <title>Sapataria - The Global Shoes</title>
+<ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
+	<ui:define name="page-header">
+        Cadastro de Funcionario
+    </ui:define>
 
-        <h:outputStylesheet name="css/bootstrap.min.css" library="bootstrap-3.3"></h:outputStylesheet>
-        <h:outputStylesheet name="css/metisMenu/metisMenu.min.css" library="bootstrap-plugin"></h:outputStylesheet>
-        <h:outputStylesheet name="css/timeline/timeline.css" library="bootstrap-plugin"></h:outputStylesheet>
-        <h:outputStylesheet name="css/sb-admin-2.css" library="default"></h:outputStylesheet>
-        <h:outputStylesheet name="css/morris-chart/morris.css" library="bootstrap-plugin"></h:outputStylesheet>
-        <h:outputStylesheet name="4.3.0/css/font-awesome.min.css" library="font-awesome"></h:outputStylesheet>
-        <h:outputStylesheet library="css" name="saog.css"></h:outputStylesheet>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        
-        <!--<o:conditionalComment if="lt IE 9">
-            <h:outputScript library="js" name="html5shiv.js"/>
-            <h:outputScript library="js" name="respond.min.js"/>
-        </o:conditionalComment>-->
+	<ui:define name="corpo">
+		<h:form id="form1">
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="panel panel-primary">
+						<div class="panel-heading">Usuário</div>
+						<div class="panel-body">
 
-    </h:head>
-    <h:body>
-        <p:messages autoUpdate="true" showDetail="true" showSummary="true"/>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5 col-md-offset-4">
-                    <div class="login-panel panel panel-primary">
-                        <div class="panel-heading">
 
-                            <h3 class="panel-title">
-                                Cadastro de Funcionário
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <form jsf:id="novo-funcionario" role="form">
-                                <fieldset>
+							<div class="col-lg-8">
+								<div class="form-group">
+									<label>Nome: </label> <input class="form-control" 
+									placeholder="Nome" type="text" jsf:id="id-Nome"
+									autofocus="true" jsf:required="true"
+									jsf:requiredMessage="Nome !"
+									jsf:value="#{UsuarioController.usuario.nome}" />
+								</div>
+							</div>
 
-                                </fieldset>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <h:outputScript library="primefaces" name="jquery/jquery.js" />
-        <h:outputScript library="bootstrap-3.3" name="js/bootstrap.min.js" />
-        <h:outputScript library="bootstrap-plugin" name="js/metisMenu/metisMenu.min.js" />
-        <h:outputScript library="bootstrap-plugin" name="js/morris/raphael.min.js" />
-        <h:outputScript library="default" name="js/sb-admin-2.js" />
-    </h:body>
+							<div class="col-lg-4">
+								<div class="form-group">
+									<label> CPF: </label> <input class="form-control" 
+									placeholder="CPF" type="text" jsf:id="id-CPF"
+									autofocus="true" jsf:required="true"
+									jsf:requiredMessage="CPF !"
+									jsf:value="#{UsuarioController.usuario.cpf}" />
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group">
+									<label> E-mail: </label> <input class="form-control" 
+									placeholder="E-mail" type="text" jsf:id="id-email"
+									autofocus="true" jsf:required="true"
+									jsf:requiredMessage="E-mail !"
+									jsf:value="#{UsuarioController.usuario.email}" />
+								</div>
+							</div>
+
+							<div class="col-lg-3">
+								<div class="form-group">
+									<label> Perfil: </label> <input class="form-control" 
+									placeholder="Perfil" type="text" jsf:id="id-Perfil"
+									autofocus="true" jsf:required="true"
+									jsf:requiredMessage="Perfil !"
+									jsf:value="#{UsuarioController.usuario.perfil}" />
+								</div>
+							</div>
+
+							<div class="col-lg-3">
+								<div class="form-group">
+									<label> Cargo: </label> <input class="form-control" 
+									placeholder="Cargo" type="text" jsf:id="id-Cargo"
+									autofocus="true" jsf:required="true"
+									jsf:requiredMessage="Cargo !"
+									jsf:value="#{UsuarioController.usuario.nome}" />
+								</div>
+							</div>
+
+							<div class="col-lg-2">
+								<div class="form-group">
+									<label> Senha: </label> <input class="form-control" 
+									placeholder="Senha" type="text" jsf:id="id-Senha"
+									autofocus="true" jsf:required="true"
+									jsf:requiredMessage="Senha !"
+									jsf:value="#{UsuarioController.usuario.senha}" />
+								</div>
+							</div>
+							<br>
+							</br>
+							<div class="col-lg-2">
+								<div class="form-group">
+									<div class="checkbox">
+										<label> <input type="checkbox" value="true">Cadastro
+												ativo</input>
+										</label>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-2 pull-left">
+										<a class="btn btn-sm btn-default btn-block"
+											jsf:outcome="lista">Voltar</a>
+									</div>
+									<div class="col-lg-2 pull-right">
+										<button class="btn btn-sm btn-primary btn-block"
+											jsf:action="#{UsuarioController.salvar()}"
+											jsf:id="id-btn-salvar">Salvar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h:panelGroup id="id-painel-inspetor">
+					<div class="col-lg-3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-user"></span> Inspetor
+							</div>
+							<div class="panel-body">
+								<div class="list-group">
+									<a href="#" class="list-group-item"> <i
+										class="fa fa-arrow-right fa-fw"></i> <strong>Campo
+											Nome</strong>, preenchimento obrigatório.
+									</a>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<h4></h4>
+							</div>
+						</div>
+					</div>
+				</h:panelGroup>
+			</div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>
 
