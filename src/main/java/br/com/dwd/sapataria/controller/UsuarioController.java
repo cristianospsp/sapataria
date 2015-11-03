@@ -28,7 +28,7 @@ public class UsuarioController implements Serializable {
 		return usuario;
 	}
 
-	public void setProduto(Usuario usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 

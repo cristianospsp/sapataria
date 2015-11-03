@@ -1,6 +1,6 @@
 package br.com.dwd.sapataria.task;
 
-import br.com.dwd.sapataria.dao.UsuarioEntityManager;
+import br.com.dwd.sapataria.dao.ProdutorEntityManager;
 import br.com.dwd.sapataria.dao.Repository;
 import br.com.dwd.sapataria.model.Usuario;
 
@@ -24,7 +24,7 @@ public class UsuarioTask implements Serializable {
 	@Inject
 	private Repository<Usuario> repository;
 
-	private EntityManager entitymanager = UsuarioEntityManager.getEntityManager();
+	private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
 	
 	@Transactional
 	public Usuario add(Usuario usuario) {
