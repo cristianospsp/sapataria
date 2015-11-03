@@ -5,7 +5,7 @@
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
     <ui:define name="page-header">
@@ -20,18 +20,125 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">Venda</div>
                         <div class="panel-body">
-                            <div class="row">
+                            <div class="row" jsf:rendered="#{empty vendaController.pedidoSelecionado}">
                                 <div class="col-lg-12">
-                                    Exibir pedidos disponiveis
+                                    <p:dataTable id="id-pedidos"
+                                                 value="#{vendaController.pedidos}"
+                                                 var="pedido"
+                                                 tableStyleClass="table table-striped table-bordered table-hover"
+                                                 emptyMessage="Nenhuma encontrado..."
+                                                 paginator="true"
+                                                 rows="5"
+                                                 paginatorPosition="bottom">
+
+                                        <p:column headerText="Nº Pedido" width="55%">
+                                            #{pedido.numero}
+                                        </p:column>
+
+                                        <p:column headerText="Vendedor" width="15%">
+                                            #{pedido.vendedor}
+                                        </p:column>
+
+                                        <p:column headerText="" width="5%">
+                                            <button class="btn btn-primary btn-xs"
+                                                    title="Selecionar" jsf:id="id-vender"
+                                                    jsf:action="#{vendaController.select(pedido)}">
+                                                <span class="glyphicon glyphicon-hand-up"> </span>
+                                                <f:ajax render="@form" execute="@this"/>
+                                            </button>
+                                        </p:column>
+
+                                    </p:dataTable>
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    Ao selecionar um pedido, exibir os itens do pedido, valor unitario, qtd e valor total
+                            <div id="detalhe-pedido">
+                                <div class="panel panel-default"
+                                     jsf:rendered="#{not empty vendaController.pedidoSelecionado}">
+                                    <div class="panel-heading">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <label class="pull-left"> Detalhes do Pedido </label>
+                                                <button class="btn btn-default btn-xs pull-right"
+                                                        title="Limpar Seleção" jsf:id="id-limpar-selecao"
+                                                        jsf:action="#{vendaController.limparSelecao}">
+                                                    <span class="glyphicon glyphicon-remove-circle"> </span> Limpar Seleçao
+                                                    <f:ajax render="@form" execute="@this"/>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label>Nº Pedido: </label>
+                                                        <h:outputText
+                                                                value="#{vendaController.pedidoSelecionado.numero}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Vendedor: </label>
+                                                        <h:outputText
+                                                                value="#{vendaController.pedidoSelecionado.vendedor}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <p:dataTable id="id-produtos-pedido-selecionado"
+                                                                     value="#{vendaController.pedidoSelecionado.listaEntrySetComoList}"
+                                                                     var="pro"
+                                                                     tableStyleClass="table table-striped table-bordered table-hover"
+                                                                     emptyMessage="Nenhuma encontrado..."
+                                                                     paginator="true"
+                                                                     rows="5"
+                                                                     paginatorPosition="bottom">
+
+                                                            <p:column headerText="Detalhes" width="65%">
+                                                                #{pro.key.nome} / #{pro.key.cor} / #{pro.key.tamanho}
+                                                            </p:column>
+
+                                                            <p:column headerText="Valor Unitário" width="15%">
+                                                                <h:outputText value="#{pro.value * pro.key.vlrVenda}">
+                                                                    <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
+                                                                </h:outputText>
+                                                            </p:column>
+
+                                                            <p:column headerText="Qtd" width="5%">
+                                                                #{pro.value}
+                                                            </p:column>
+
+                                                            <p:column headerText="Valor" width="15%">
+                                                                <h:outputText value="#{pro.value * pro.key.vlrVenda}">
+                                                                    <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
+                                                                </h:outputText>
+                                                            </p:column>
+
+                                                            <!--<p:column headerText="Selecionar" width="15%">
+                                                                <button class="btn btn-primary btn-xs pull-right"
+                                                                        title="Selecionar" jsf:id="id-vender"
+                                                                        jsf:action="#{vendaController.select(pedido)}">
+                                                                    <span class="fa fa-hand-pointer-o"> </span>
+                                                                    <f:ajax render="@form" execute="@this"/>
+                                                                </button>
+                                                            </p:column>-->
+
+                                                        </p:dataTable>
+                                                    </div>
+
+                                                    <div class="form-group pull-right">
+                                                        <label>Total: </label>
+                                                        <h:outputText
+                                                                value="#{vendaController.pedidoSelecionado.total}">
+                                                            <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
+                                                        </h:outputText>
+                                                    </div>
+
+                                                </fieldset>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="panel-footer">
