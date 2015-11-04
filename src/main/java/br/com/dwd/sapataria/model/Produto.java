@@ -11,9 +11,27 @@ import java.io.Serializable;
  * Created by Cristiano on 02/10/15.//
  */
 @Entity
+@NamedQueries({
+		 @NamedQuery(
+				name = Produto.PRODUTO_LIST_NAME,
+				query = "select p from Produto p where p.nome like :nome"),
+		 @NamedQuery(
+					name = Produto.PRODUTO_LIST_ALL,
+					query = "select p from Produto p"),
+		 @NamedQuery(
+					name = Produto.PRODUTO_FIND_NAME,
+					query = "select p from Produto p where p.nome = :nome"),
+		 @NamedQuery(
+					name = Produto. PRODUTO_FIND_ID,
+					query = "select p from Produto p where p.id = :id"),
+})
 @Table
 public class Produto implements Serializable {
-
+	public static final String PRODUTO_LIST_NAME = "Produto.listName";
+	public static final String PRODUTO_FIND_NAME = "Produto.findName";
+	public static final String PRODUTO_LIST_ALL = "Produto.listAll";
+	public static final String PRODUTO_FIND_ID = "Produto.findId";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;	
@@ -38,23 +56,19 @@ public class Produto implements Serializable {
 	
 	@Column
 	@NotNull
-	private int qtdMinima;
+	private int quantidadeMinima;
 
 	@Column
 	@NotNull
-	private int qtdTotal;
+	private int quantidadeTotal;
 	
 	@Column
 	@NotNull
-	private double vlrVenda;
+	private double valorVenda;
 	
 	@Column
 	@NotNull
-	private double vlrCompra;
-	
-	@Column
-	@NotNull
-	private boolean status;  
+	private double valorCompra;
 	
 	public Long getId() {
 		return id;
@@ -80,7 +94,6 @@ public class Produto implements Serializable {
 		this.fabricante = fabricante;
 	}
 	
-	
 	public long getCodigoBarras(){
 		return codigoBarras;		
 	}
@@ -105,44 +118,36 @@ public class Produto implements Serializable {
 		this.cor = cor;
 	}
 
-	public int getQtdMinima() {
-		return qtdMinima;
+	public int getQuantidadeMinima() {
+		return quantidadeMinima;
 	}
 
-	public void setQtdMinima(int qtdMinima) {
-		this.qtdMinima = qtdMinima;
+	public void setQuantidadeMinima(int quantidadeMinima) {
+		this.quantidadeMinima = quantidadeMinima;
 	}
 
-	public int getQtdTotal() {
-		return qtdTotal;
+	public int getQuantidadeTotal() {
+		return quantidadeTotal;
 	}
 
-	public void setQtdTotal(int qtdTotal) {
-		this.qtdTotal = qtdTotal;
+	public void setQuantidadeTotal(int quantidadeTotal) {
+		this.quantidadeTotal = quantidadeTotal;
 	}
 
-	public double getVlrVenda() {
-		return vlrVenda;
+	public double getValorVenda() {
+		return valorVenda;
 	}
 
-	public void setVlrVenda(double vlrVenda) {
-		this.vlrVenda = vlrVenda;
+	public void setValorVenda(double valorVenda) {
+		this.valorVenda = valorVenda;
 	}
 
-	public double getVlrCompra() {
-		return vlrCompra;
+	public double getValorCompra() {
+		return valorCompra;
 	}
 
-	public void setVlrCompra(double vlrCompra) {
-		this.vlrCompra = vlrCompra;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setValorCompra(double valorCompra) {
+		this.valorCompra = valorCompra;
 	}
 	
 }
