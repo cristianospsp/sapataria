@@ -13,6 +13,7 @@ public class ApplicationJAXRS extends Application {
 	public Set<Class<?>> getClasses() {
 		Set<Class<?>> classes = new HashSet<>();
 		classes.add(SapatariaWebService.class);
+		classes.add(UserSecurityWS.class);
 		return classes;
 	}
 

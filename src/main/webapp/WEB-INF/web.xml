@@ -12,6 +12,25 @@
 		<mime-type>image/x-icon</mime-type>
 	</mime-mapping>
 
+	<servlet>
+		<servlet-name>RestServlet</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/rest</param-value>
+	</context-param>
+	<context-param>
+		<param-name>resteasy.scan</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<servlet-mapping>
+		<servlet-name>RestServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
@@ -22,6 +41,11 @@
 			javax.enterprise.inject.spi.BeanManager
 		</resource-env-ref-type>
 	</resource-env-ref>
+
+	<context-param>
+		<param-name>resteasy.injector.factory</param-name>
+		<param-value>org.jboss.resteasy.cdi.CdiInjectorFactory</param-value>
+	</context-param>
 
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
@@ -39,7 +63,7 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>-->
 
-	<servlet>
+	<!--<servlet>
 		<servlet-name>Jersey Servlet</servlet-name>
 		<servlet-class>
 			com.sun.jersey.spi.container.servlet.ServletContainer
@@ -50,7 +74,7 @@
 			<param-value>br.com.dwd.sapataria.ws.ApplicationJAXRS</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
-	</servlet>
+	</servlet>-->
 
 	<filter>
 		<filter-name>ValidaLoginFilter</filter-name>
@@ -67,9 +91,9 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
+	<!--<servlet-mapping>
 		<servlet-name>Jersey Servlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping>-->
 
 </web-app>

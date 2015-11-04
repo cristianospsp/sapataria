@@ -4,19 +4,24 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.math.BigDecimal;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by Cristiano on 19/10/15.
  */
-@Entity
+//@Entity
 public class Pedido implements Serializable {
 
-	@Id
+	//@Id
 	private Long id;
-	@OneToMany
-	private List<Produto> produtos = new ArrayList<>();
+	/*@OneToMany
+	private List<Produto> produtos = new ArrayList<>();*/
+
+	private Map<Produto, Integer> produtos = new HashMap<>();
+	private String vendedor;
+	private Long numero;
 
 	public Long getId() {
 		return id;
@@ -26,11 +31,56 @@ public class Pedido implements Serializable {
 		this.id = id;
 	}
 
-	public List<Produto> getProdutos() {
+	public Map<Produto, Integer> getProdutos() {
+		return produtos;
+	}
+
+	public List<Map.Entry<Produto, Integer>> getListaEntrySetComoList() {
+		return new ArrayList<>(produtos.entrySet()); //.stream().map(e -> e.getKey()).collect(Collectors.toList());
+	}
+
+	public Set<Map.Entry<Produto, Integer>> getListaProdutos() {
+		return produtos.entrySet(); //.stream().map(e -> e.getKey()).collect(Collectors.toList());
+	}
+
+	public void adicionaProduto(Produto produto, Integer quantidade) {
+		this.produtos.put(produto, quantidade);
+	}
+
+	/*public List<Produto> getProdutos() {
 		return produtos;
 	}
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}*/
+
+	public String getVendedor() {
+		return vendedor;
 	}
+
+	public void setVendedor(String vendedor) {
+		this.vendedor = vendedor;
+	}
+
+	public Long getNumero() {
+		return numero;
+	}
+
+	public void setNumero(Long numero) {
+		this.numero = numero;
+	}
+
+	public Double getTotal() {
+		Double total = 0d;
+		for (Map.Entry<Produto, Integer> pair : produtos.entrySet()) {
+			double vlrVenda = pair.getKey().getVlrVenda();
+			Integer qtd = pair.getValue();
+			total += (qtd * vlrVenda);
+		}
+		return total;
+
+//		return new BigDecimal(produtos.stream().mapToDouble(p -> p.getVlrVenda()).sum());
+	}
+
 }

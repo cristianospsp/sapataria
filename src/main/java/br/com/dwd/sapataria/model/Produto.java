@@ -2,15 +2,14 @@ package br.com.dwd.sapataria.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import org.apache.deltaspike.core.api.projectstage.ProjectStage.Production;
-
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by Cristiano on 02/10/15.//
  */
 @Entity
+<<<<<<< HEAD
 @NamedQueries({
 		 @NamedQuery(
 				name = Produto.PRODUTO_LIST_NAME,
@@ -32,34 +31,53 @@ public class Produto implements Serializable {
 	public static final String PRODUTO_LIST_ALL = "Produto.listAll";
 	public static final String PRODUTO_FIND_ID = "Produto.findId";
 	
+=======
+@NamedQueries(
+	 {
+			@NamedQuery(
+				 name = Produto.PRODUTO_FIND_BY_NOME,
+				 query = "select p from Produto p where p.nome = :nome"
+			),
+		  @NamedQuery(
+				 name = Produto.PRODUTO_FIND_BY_CODIGO_BARRA,
+				 query = "select p from Produto p where p.codigoBarras = :codigoBarras"
+		  )
+	 })
+public class Produto implements Serializable {
+
+	public static final String PRODUTO_FIND_BY_NOME = "Produto.findByNome";
+	public static final String PRODUTO_FIND_BY_CODIGO_BARRA = "Produto.findByCodigoBarra";
+
+>>>>>>> 811b78914b317a87a2e50cad6e965475c2877ffa
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;	
-	
+	private Long id;
+
 	private String nome;
-	
+
 	@NotNull
 	@Column
 	private String fabricante;
-	
+
 	@Column
 	@NotNull
 	private long codigoBarras;
-	
+
 	@Column
 	@NotNull
 	private int tamanho;
-	
+
 	@Column
 	@NotNull
 	private String cor;
-	
+
 	@Column
 	@NotNull
 	private int quantidadeMinima;
 
 	@Column
 	@NotNull
+<<<<<<< HEAD
 	private int quantidadeTotal;
 	
 	@Column
@@ -70,10 +88,36 @@ public class Produto implements Serializable {
 	@NotNull
 	private double valorCompra;
 	
+=======
+	private int qtdTotal;
+
+	@Column
+	@NotNull
+	private double vlrVenda;
+
+	@Column
+	@NotNull
+	private double vlrCompra;
+
+	@Column
+	@NotNull
+	private boolean status;
+
+	public Produto() {
+	}
+
+	public Produto(String nome, String fabricante, String cor, double vlrVenda) {
+		this.nome = nome;
+		this.fabricante = fabricante;
+		this.cor = cor;
+		this.vlrVenda = vlrVenda;
+	}
+
+>>>>>>> 811b78914b317a87a2e50cad6e965475c2877ffa
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -93,12 +137,19 @@ public class Produto implements Serializable {
 	public void setFabricante(String fabricante) {
 		this.fabricante = fabricante;
 	}
+<<<<<<< HEAD
 	
 	public long getCodigoBarras(){
 		return codigoBarras;		
+=======
+
+
+	public long getCodigoBarras() {
+		return codigoBarras;
+>>>>>>> 811b78914b317a87a2e50cad6e965475c2877ffa
 	}
-	
-	public void setCodigoBarras(long codigoBarras){
+
+	public void setCodigoBarras(long codigoBarras) {
 		this.codigoBarras = codigoBarras;
 	}
 
@@ -149,5 +200,18 @@ public class Produto implements Serializable {
 	public void setValorCompra(double valorCompra) {
 		this.valorCompra = valorCompra;
 	}
-	
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Produto)) return false;
+		Produto produto = (Produto) o;
+		return Objects.equals(getId(), produto.getId()) &&
+			 Objects.equals(getNome(), produto.getNome());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getNome());
+	}
 }
