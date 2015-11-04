@@ -2,6 +2,7 @@ package br.com.dwd.sapataria.ws;
 
 import br.com.dwd.sapataria.model.Usuario;
 import br.com.dwd.sapataria.task.SecurityTask;
+import com.google.gson.Gson;
 
 
 import javax.inject.Inject;
@@ -27,7 +28,12 @@ public class UserSecurityWS {
 
 		Usuario usuarioEcontrado = task.findUserByLoginAndPss(login, senha);
 
-		return usuarioEcontrado != null ? "Usuario logado: " + usuarioEcontrado.getNome() : "Usuario nao encontrato !";
+		if (usuarioEcontrado == null)
+			return null;
+
+		String usuarioJson = new Gson().toJson(usuarioEcontrado);
+
+		return usuarioJson;
 	}
 
 }
