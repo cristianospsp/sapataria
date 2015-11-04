@@ -17,7 +17,7 @@ public class UsuarioController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private static final String LISTA = "/sapataria/restrito/usuario/lista.xhtml";
+	private static final String LISTA = "/sapataria/restrito/funcionario/lista.xhtml";
 
 	private Usuario usuario = new Usuario();
 

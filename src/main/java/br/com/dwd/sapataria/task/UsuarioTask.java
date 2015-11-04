@@ -32,7 +32,7 @@ public class UsuarioTask implements Serializable {
 		transaction.begin();
 		entitymanager.persist(usuario);
 		transaction.commit();
-		repository.add(usuario);
+		/*repository.add(usuario);*/
 		return usuario;
 	}
 
