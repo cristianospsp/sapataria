@@ -61,15 +61,15 @@ public class Produto implements Serializable {
 	@NotNull
 	private int qtdTotal;
 
-	@Column
+	@NotNull
+	private int qtdMinima;
+
 	@NotNull
 	private double vlrVenda;
 
-	@Column
 	@NotNull
 	private double vlrCompra;
 
-	@Column
 	@NotNull
 	private boolean status;
 
@@ -139,6 +139,14 @@ public class Produto implements Serializable {
 		this.qtdTotal = qtdTotal;
 	}
 
+	public int getQtdMinima() {
+		return qtdMinima;
+	}
+
+	public void setQtdMinima(int qtdMinima) {
+		this.qtdMinima = qtdMinima;
+	}
+
 	public double getVlrVenda() {
 		return vlrVenda;
 	}
@@ -163,17 +171,5 @@ public class Produto implements Serializable {
 		this.status = status;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Produto)) return false;
-		Produto produto = (Produto) o;
-		return Objects.equals(getId(), produto.getId()) &&
-			 Objects.equals(getNome(), produto.getNome());
-	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(getId(), getNome());
-	}
 }
