@@ -9,7 +9,6 @@ import java.util.Objects;
  * Created by Cristiano on 02/10/15.//
  */
 @Entity
-<<<<<<< HEAD
 @NamedQueries({
 		 @NamedQuery(
 				name = Produto.PRODUTO_LIST_NAME,
@@ -23,32 +22,24 @@ import java.util.Objects;
 		 @NamedQuery(
 					name = Produto. PRODUTO_FIND_ID,
 					query = "select p from Produto p where p.id = :id"),
+	 @NamedQuery(
+			name = Produto.PRODUTO_FIND_BY_NOME,
+			query = "select p from Produto p where p.nome = :nome"
+	 ),
+	 @NamedQuery(
+			name = Produto.PRODUTO_FIND_BY_CODIGO_BARRA,
+			query = "select p from Produto p where p.codigoBarras = :codigoBarras"
+	 )
 })
-@Table
 public class Produto implements Serializable {
+
 	public static final String PRODUTO_LIST_NAME = "Produto.listName";
 	public static final String PRODUTO_FIND_NAME = "Produto.findName";
 	public static final String PRODUTO_LIST_ALL = "Produto.listAll";
 	public static final String PRODUTO_FIND_ID = "Produto.findId";
-	
-=======
-@NamedQueries(
-	 {
-			@NamedQuery(
-				 name = Produto.PRODUTO_FIND_BY_NOME,
-				 query = "select p from Produto p where p.nome = :nome"
-			),
-		  @NamedQuery(
-				 name = Produto.PRODUTO_FIND_BY_CODIGO_BARRA,
-				 query = "select p from Produto p where p.codigoBarras = :codigoBarras"
-		  )
-	 })
-public class Produto implements Serializable {
-
 	public static final String PRODUTO_FIND_BY_NOME = "Produto.findByNome";
 	public static final String PRODUTO_FIND_BY_CODIGO_BARRA = "Produto.findByCodigoBarra";
 
->>>>>>> 811b78914b317a87a2e50cad6e965475c2877ffa
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -56,39 +47,18 @@ public class Produto implements Serializable {
 	private String nome;
 
 	@NotNull
-	@Column
 	private String fabricante;
 
-	@Column
 	@NotNull
 	private long codigoBarras;
 
-	@Column
 	@NotNull
 	private int tamanho;
 
-	@Column
 	@NotNull
 	private String cor;
 
-	@Column
 	@NotNull
-	private int quantidadeMinima;
-
-	@Column
-	@NotNull
-<<<<<<< HEAD
-	private int quantidadeTotal;
-	
-	@Column
-	@NotNull
-	private double valorVenda;
-	
-	@Column
-	@NotNull
-	private double valorCompra;
-	
-=======
 	private int qtdTotal;
 
 	@Column
@@ -113,7 +83,6 @@ public class Produto implements Serializable {
 		this.vlrVenda = vlrVenda;
 	}
 
->>>>>>> 811b78914b317a87a2e50cad6e965475c2877ffa
 	public Long getId() {
 		return id;
 	}
@@ -137,16 +106,9 @@ public class Produto implements Serializable {
 	public void setFabricante(String fabricante) {
 		this.fabricante = fabricante;
 	}
-<<<<<<< HEAD
-	
-	public long getCodigoBarras(){
-		return codigoBarras;		
-=======
-
 
 	public long getCodigoBarras() {
 		return codigoBarras;
->>>>>>> 811b78914b317a87a2e50cad6e965475c2877ffa
 	}
 
 	public void setCodigoBarras(long codigoBarras) {
@@ -169,36 +131,36 @@ public class Produto implements Serializable {
 		this.cor = cor;
 	}
 
-	public int getQuantidadeMinima() {
-		return quantidadeMinima;
+	public int getQtdTotal() {
+		return qtdTotal;
 	}
 
-	public void setQuantidadeMinima(int quantidadeMinima) {
-		this.quantidadeMinima = quantidadeMinima;
+	public void setQtdTotal(int qtdTotal) {
+		this.qtdTotal = qtdTotal;
 	}
 
-	public int getQuantidadeTotal() {
-		return quantidadeTotal;
+	public double getVlrVenda() {
+		return vlrVenda;
 	}
 
-	public void setQuantidadeTotal(int quantidadeTotal) {
-		this.quantidadeTotal = quantidadeTotal;
+	public void setVlrVenda(double vlrVenda) {
+		this.vlrVenda = vlrVenda;
 	}
 
-	public double getValorVenda() {
-		return valorVenda;
+	public double getVlrCompra() {
+		return vlrCompra;
 	}
 
-	public void setValorVenda(double valorVenda) {
-		this.valorVenda = valorVenda;
+	public void setVlrCompra(double vlrCompra) {
+		this.vlrCompra = vlrCompra;
 	}
 
-	public double getValorCompra() {
-		return valorCompra;
+	public boolean isStatus() {
+		return status;
 	}
 
-	public void setValorCompra(double valorCompra) {
-		this.valorCompra = valorCompra;
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	@Override
