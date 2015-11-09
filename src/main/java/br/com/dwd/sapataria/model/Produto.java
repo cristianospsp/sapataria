@@ -10,18 +10,18 @@ import java.util.Objects;
  */
 @Entity
 @NamedQueries({
-		 @NamedQuery(
-				name = Produto.PRODUTO_LIST_NAME,
-				query = "select p from Produto p where p.nome like :nome"),
-		 @NamedQuery(
-					name = Produto.PRODUTO_LIST_ALL,
-					query = "select p from Produto p"),
-		 @NamedQuery(
-					name = Produto.PRODUTO_FIND_NAME,
-					query = "select p from Produto p where p.nome = :nome"),
-		 @NamedQuery(
-					name = Produto. PRODUTO_FIND_ID,
-					query = "select p from Produto p where p.id = :id"),
+	 @NamedQuery(
+			name = Produto.PRODUTO_LIST_NAME,
+			query = "select p from Produto p where p.nome like :nome"),
+	 @NamedQuery(
+			name = Produto.PRODUTO_LIST_ALL,
+			query = "select p from Produto p"),
+	 @NamedQuery(
+			name = Produto.PRODUTO_FIND_NAME,
+			query = "select p from Produto p where p.nome = :nome"),
+	 @NamedQuery(
+			name = Produto.PRODUTO_FIND_ID,
+			query = "select p from Produto p where p.id = :id"),
 	 @NamedQuery(
 			name = Produto.PRODUTO_FIND_BY_NOME,
 			query = "select p from Produto p where p.nome = :nome"
@@ -172,4 +172,17 @@ public class Produto implements Serializable {
 	}
 
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (!(o instanceof Produto)) return false;
+		Produto produto = (Produto) o;
+		return Objects.equals(getId(), produto.getId()) &&
+			 Objects.equals(getNome(), produto.getNome());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getId(), getNome());
+	}
 }

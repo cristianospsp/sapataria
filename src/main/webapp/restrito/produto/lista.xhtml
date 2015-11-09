@@ -54,7 +54,7 @@
 												jsf:action="#{produtoFiltroController.buscarProduto()}"
 												class="btn btn-default" title="Buscar">
 												<i class="glyphicon glyphicon-search" />
-												<!--<f:ajax render="@form" execute="@form"/>-->
+												<f:ajax render="@form" execute="@form"/>
 											</button>
 										</span>
 									</div>
@@ -81,10 +81,10 @@
 												</p:column>
 
 												<p:column headerText="Qtd Total">
-													<h:outputText value="#{produto.quantidadeTotal}" />
+													<h:outputText value="#{produto.qtdTotal}" />
 												</p:column>
 												<p:column headerText="Vlr Venda">
-													<h:outputText value="#{produto.valorVenda}">
+													<h:outputText value="#{produto.vlrVenda}">
 													<f:convertNumber currencyCode="BRL" type="currency"/>
 													</h:outputText>
 												</p:column>
@@ -103,8 +103,8 @@
 													<button class="btn btn-default" jsf:outcome="novo"
 														title="Editar">
 														<span class="glyphicon glyphicon-pencil"/>
-														<!-- <f:param value="#{produto.id}" name="id-produto"/>
-														<f:ajax execute="@this" render="@form"/> -->
+														<f:param value="#{produto.id}" name="id-produto"/>
+														<f:ajax execute="@this" render="@form" event="click"/>
 													</button>
 												</p:column>
 
@@ -113,7 +113,7 @@
 														jsf:id="btn-excluir"
 														jsf:action="#{produtoFiltroController.delete(produto)}">
 														<span class="glyphicon glyphicon-trash"/>
-														<!-- <f:ajax execute="@this" render="@form"/> -->
+														<f:ajax execute="@form" render="@form"/>
 													</button>
 												</p:column>
 
