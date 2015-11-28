@@ -20,7 +20,7 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
  */
 public class JPARepository<T> implements Repository<T> {
 
-	private EntityManager em = ProdutorEntityManager.getEntityManager();
+	private EntityManager em;// = ProdutorEntityManager.getEntityManager();
 	private Class<T> clazz;
 
 	public JPARepository(EntityManager em) {

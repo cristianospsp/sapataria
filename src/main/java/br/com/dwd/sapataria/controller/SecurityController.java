@@ -54,8 +54,6 @@ public class SecurityController implements Serializable {
 
 	public void logar() throws IOException {
 
-		// TODO precisa aplicar algum esquema de criptografia na senha, tipo md5
-
 		Usuario usuarioEcontrado = task.findUserByLoginAndPss(login, senha);
 
 		if (usuarioEcontrado != null) {

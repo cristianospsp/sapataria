@@ -5,6 +5,7 @@ import br.com.dwd.sapataria.model.Usuario;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +23,9 @@ public class SecurityTask {
 		Map<String, Object> param = new HashMap<>();
 		param.put("email", login);
 		param.put("senha", senha);
+
+		List<Usuario> usuarios1 = usuarioRepository.listAll();
+
 		List<Usuario> usuarios = usuarioRepository.listBy(Usuario.USUARIO_LOGIN, param);
 		return usuarios.stream().findFirst().orElse(null);
 	}

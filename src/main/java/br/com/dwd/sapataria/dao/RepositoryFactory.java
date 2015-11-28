@@ -15,7 +15,7 @@ import java.lang.reflect.ParameterizedType;
 @Dependent
 public class RepositoryFactory {
 
-	@Inject
+	@PersistenceContext
 	private EntityManager em;
 
 	@Produces

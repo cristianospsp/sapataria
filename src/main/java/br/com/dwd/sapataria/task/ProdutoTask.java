@@ -1,13 +1,10 @@
 package br.com.dwd.sapataria.task;
 
-import br.com.dwd.sapataria.dao.ProdutorEntityManager;
 import br.com.dwd.sapataria.dao.Repository;
 import br.com.dwd.sapataria.model.Produto;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -20,21 +17,21 @@ public class ProdutoTask implements Serializable {
 	@Inject
 	private Repository<Produto> repository;
 
-	private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
+	//private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
 
 	public Produto add(Produto produto) {
-		EntityTransaction transaction = entitymanager.getTransaction();
+		/*EntityTransaction transaction = entitymanager.getTransaction();
 		transaction.begin();
 		entitymanager.persist(produto);
-		transaction.commit();
+		transaction.commit();*/
 		return produto;
 	}
 
 	public void delete(Produto produto) {
-		EntityTransaction transaction = entitymanager.getTransaction();
+		/*EntityTransaction transaction = entitymanager.getTransaction();
 		transaction.begin();
 		entitymanager.remove(entitymanager.merge(produto));
-		transaction.commit();
+		transaction.commit();*/
 	}
 
 	public List<Produto> listAll() {
@@ -67,10 +64,10 @@ public class ProdutoTask implements Serializable {
 
 
 	public Produto update(Produto produto) {
-		EntityTransaction transaction = entitymanager.getTransaction();
+		/*EntityTransaction transaction = entitymanager.getTransaction();
 		transaction.begin();
 		entitymanager.merge(produto);
-		transaction.commit();
+		transaction.commit();*/
 		// return repository.update(produto);
 		return produto;
 

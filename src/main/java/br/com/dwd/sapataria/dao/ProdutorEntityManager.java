@@ -9,14 +9,14 @@ import javax.persistence.Persistence;
 /**
  * Created by Cristiano on 06/10/15.
  */
-@Singleton
+//@Singleton
 public class ProdutorEntityManager {
 
 	private static EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
 
 	private static EntityManager entityManager;
 	
-	@Produces
+	//@Produces
 	public EntityManager criaEntityManager() {
 		entityManager = factory.createEntityManager();
 		return entityManager;
