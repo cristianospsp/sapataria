@@ -10,7 +10,7 @@ Criar a pasta mysql/main, ficará assim:
 
 wildfly-9.0.2.Final/modules/system/layers/base/com/mysql/main
 
-dentro da pasta main copiar os arquivos que vou mandar por email:
+dentro da pasta main copiar os arquivos do GOOGLE-DRIVE loca: Pim > 4º Sem > DRIVER-MYSQL:
 - module.xml
 - mysql-connector-java-5.1.29-bin.jar
 
