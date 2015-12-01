@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,6 +27,7 @@ public class SapatariaWebService {
 	private ProdutoTask task;
 
 	@GET
+	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String dizOla() {
 		String teste = "Hello Kebra Barraco ! ! !";

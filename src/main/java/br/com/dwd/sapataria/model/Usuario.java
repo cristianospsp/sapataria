@@ -1,7 +1,5 @@
 package br.com.dwd.sapataria.model;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
