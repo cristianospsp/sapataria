@@ -39,6 +39,7 @@ Dentro dela Adicionar como segue abaixo:
 	       </driver>
 	    </drivers>
 	</datasource>
-</datasources>```
+</datasources>
+```
 
 OBS: Caso exista outras configurações, NAO REMOVA NADA, apenas adicione como as instruções acima. :o)
