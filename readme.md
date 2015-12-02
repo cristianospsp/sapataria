@@ -22,9 +22,11 @@ wildfly-9.0.2.Final/modules/system/layers/base/com/mysql/main/mysql-connector-ja
 Agora vamos configurar o arquivo standalone.xml que esta na pasta:
 - wildfly-9.0.2.Final/standalone/configuration/standalone.xml
 
-Localizar a sessao:   <datasources> </datasources>
+Localizar a sessao:   <!-- <datasources> </datasources>  -->
 
 Dentro dela Adicionar como segue abaixo:
+
+<!--
 
 <datasources> 
 	<datasource jta="false" jndi-name="java:jboss/datasources/SapatariaDS" pool-name="SapatariaDS" enabled="true" use-java-context="true">
@@ -40,5 +42,7 @@ Dentro dela Adicionar como segue abaixo:
 	    </drivers>
 	</datasource>
 </datasources>
+
+-->
 
 OBS: Caso exista outras configurações, NAO REMOVA NADA, apenas adicione como as instruções acima. :o)
