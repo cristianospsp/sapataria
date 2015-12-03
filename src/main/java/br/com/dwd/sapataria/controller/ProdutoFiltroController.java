@@ -33,7 +33,7 @@ public class ProdutoFiltroController implements Serializable {
 
 		if (produto.getQtdTotal() <= 0) {
 			task.delete(produto);
-			//produtos = new ArrayList<>();
+			buscarProduto();
 			this.produto = new Produto();
 		} else {
 			System.out.println("ESTE PRODUTO AINDA ESTÁ COM ESTOQUE >0");

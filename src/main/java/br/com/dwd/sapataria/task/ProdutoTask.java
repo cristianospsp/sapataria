@@ -6,6 +6,7 @@ import br.com.dwd.sapataria.model.Produto;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.NoResultException;
+import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -17,21 +18,15 @@ public class ProdutoTask implements Serializable {
 	@Inject
 	private Repository<Produto> repository;
 
-	//private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
-
+	@Transactional
 	public Produto add(Produto produto) {
-		/*EntityTransaction transaction = entitymanager.getTransaction();
-		transaction.begin();
-		entitymanager.persist(produto);
-		transaction.commit();*/
+		produto = repository.add(produto);
 		return produto;
 	}
 
+	@Transactional
 	public void delete(Produto produto) {
-		/*EntityTransaction transaction = entitymanager.getTransaction();
-		transaction.begin();
-		entitymanager.remove(entitymanager.merge(produto));
-		transaction.commit();*/
+		repository.delete(repository.find(produto.getId()));
 	}
 
 	public List<Produto> listAll() {
@@ -62,13 +57,9 @@ public class ProdutoTask implements Serializable {
 
 	}
 
-
+	@Transactional
 	public Produto update(Produto produto) {
-		/*EntityTransaction transaction = entitymanager.getTransaction();
-		transaction.begin();
-		entitymanager.merge(produto);
-		transaction.commit();*/
-		// return repository.update(produto);
+		produto = repository.update(produto);
 		return produto;
 
 	}
