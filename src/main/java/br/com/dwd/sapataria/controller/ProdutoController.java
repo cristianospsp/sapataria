@@ -35,38 +35,48 @@ public class ProdutoController implements Serializable {
 		produto = idSelecionado.map(id -> Long.valueOf(id)).map(id -> task.findById(id)).orElse(new Produto());
 	}
 
+	public void verificar() {
+		// metodo verifica se o ID do produto já exite (para atualizar ou
+		// salvar)
+		try {
+			Long id = produto.getId();
+			Produto produtoFindId = task.findById(id);
+			if (produtoFindId != null) {
+				this.produto = update(produto);
+			}
+		} catch (Exception e) {
+			this.verificarNome(produto);
+		}
+
+	}
 
 	public Produto update(Produto produto) {
 		try {
 			task.update(produto);
 			System.out.println("Produto atualizado");
 			Faces.redirect(LISTA);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
-	public void verificar(){
-		//metodo verifica se o ID do produto já exite (para atualizar ou salvar)
-		try {
-			Long id = produto.getId();
-			Produto produtoFindId= task.findById(id);
-			if (produtoFindId != null) {	
-				this.produto = update(produto);
-			} 
-		} catch (Exception e) {
-			this.salvar(produto);
-		}
 
-		
+	public void verificarNome(Produto produto) {
+		try {
+			String name = produto.getNome();
+			Produto produtoFindName = task.findByName(name);
+			if (produtoFindName == null) {
+				this.salvar(produto);
+			}
+		} catch (Exception e) {
+			System.out.println("Já tem um cadastro com esse nome");
+		}
 	}
 
 	public void salvar(Produto produto) {
 		try {
-			//falta implementar verificação do nome e das quantidades
 			task.add(produto);
-			Faces.redirect(LISTA); 
+			Faces.redirect(LISTA);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

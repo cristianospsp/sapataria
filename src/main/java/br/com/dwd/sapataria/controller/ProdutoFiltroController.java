@@ -40,14 +40,6 @@ public class ProdutoFiltroController implements Serializable {
 		}
 	}
 
-/*	public void update(Produto produto) {
-		long id = produto.getId();
-		Produto produtoFindId = task.findById(id);
-		this.produto = produtoFindId;
-	}
-	*/
-
-
 	public Produto getProduto() {
 		return produto;
 	}
