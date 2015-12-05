@@ -25,10 +25,6 @@ import java.util.Objects;
 	 @NamedQuery(
 			name = Produto.PRODUTO_FIND_BY_NOME,
 			query = "select p from Produto p where p.nome = :nome"
-	 ),
-	 @NamedQuery(
-			name = Produto.PRODUTO_FIND_BY_CODIGO_BARRA,
-			query = "select p from Produto p where p.codigoBarras = :codigoBarras"
 	 )
 })
 public class Produto implements Serializable {
@@ -38,19 +34,16 @@ public class Produto implements Serializable {
 	public static final String PRODUTO_LIST_ALL = "Produto.listAll";
 	public static final String PRODUTO_FIND_ID = "Produto.findId";
 	public static final String PRODUTO_FIND_BY_NOME = "Produto.findByNome";
-	public static final String PRODUTO_FIND_BY_CODIGO_BARRA = "Produto.findByCodigoBarra";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotNull
 	private String nome;
 
 	@NotNull
 	private String fabricante;
-
-	@NotNull
-	private long codigoBarras;
 
 	@NotNull
 	private int tamanho;
@@ -59,28 +52,22 @@ public class Produto implements Serializable {
 	private String cor;
 
 	@NotNull
-	private int qtdTotal;
+	private int quantidadeTotal;
 
 	@NotNull
-	private int qtdMinima;
+	private int quantidadeMinima;
 
 	@NotNull
-	private double vlrVenda;
-
-	@NotNull
-	private double vlrCompra;
-
-	@NotNull
-	private boolean status;
+	private double valor;
 
 	public Produto() {
 	}
 
-	public Produto(String nome, String fabricante, String cor, double vlrVenda) {
+	public Produto(String nome, String fabricante, String cor, double valorVenda) {
 		this.nome = nome;
 		this.fabricante = fabricante;
 		this.cor = cor;
-		this.vlrVenda = vlrVenda;
+		this.valor = valorVenda;
 	}
 
 	public Long getId() {
@@ -107,14 +94,6 @@ public class Produto implements Serializable {
 		this.fabricante = fabricante;
 	}
 
-	public long getCodigoBarras() {
-		return codigoBarras;
-	}
-
-	public void setCodigoBarras(long codigoBarras) {
-		this.codigoBarras = codigoBarras;
-	}
-
 	public int getTamanho() {
 		return tamanho;
 	}
@@ -131,46 +110,29 @@ public class Produto implements Serializable {
 		this.cor = cor;
 	}
 
-	public int getQtdTotal() {
-		return qtdTotal;
+	public int getQuantidadeTotal() {
+		return quantidadeTotal;
 	}
 
-	public void setQtdTotal(int qtdTotal) {
-		this.qtdTotal = qtdTotal;
+	public void setQuantidadeTotal(int qtdTotal) {
+		this.quantidadeTotal = qtdTotal;
 	}
 
-	public int getQtdMinima() {
-		return qtdMinima;
+	public int getQuantidadeMinima() {
+		return quantidadeMinima;
 	}
 
-	public void setQtdMinima(int qtdMinima) {
-		this.qtdMinima = qtdMinima;
+	public void setQuantidadeMinima(int quantidadeMinima) {
+		this.quantidadeMinima = quantidadeMinima;
 	}
 
-	public double getVlrVenda() {
-		return vlrVenda;
+	public double getValor() {
+		return valor;
 	}
 
-	public void setVlrVenda(double vlrVenda) {
-		this.vlrVenda = vlrVenda;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
-
-	public double getVlrCompra() {
-		return vlrCompra;
-	}
-
-	public void setVlrCompra(double vlrCompra) {
-		this.vlrCompra = vlrCompra;
-	}
-
-	public boolean isStatus() {
-		return status;
-	}
-
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
-
 
 	@Override
 	public boolean equals(Object o) {

@@ -31,7 +31,7 @@ public class ProdutoFiltroController implements Serializable {
 
 	public void delete(Produto produto) {
 
-		if (produto.getQtdTotal() <= 0) {
+		if (produto.getQuantidadeTotal() <= 0) {
 			task.delete(produto);
 			buscarProduto();
 			this.produto = new Produto();

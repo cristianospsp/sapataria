@@ -97,7 +97,7 @@
                                                             </p:column>
 
                                                             <p:column headerText="Valor Unitário" width="15%">
-                                                                <h:outputText value="#{pro.value * pro.key.vlrVenda}">
+                                                                <h:outputText value="#{pro.value * pro.key.valor}">
                                                                     <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
                                                                 </h:outputText>
                                                             </p:column>
@@ -107,7 +107,7 @@
                                                             </p:column>
 
                                                             <p:column headerText="Valor" width="15%">
-                                                                <h:outputText value="#{pro.value * pro.key.vlrVenda}">
+                                                                <h:outputText value="#{pro.value * pro.key.valor}">
                                                                     <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
                                                                 </h:outputText>
                                                             </p:column>

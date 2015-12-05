@@ -61,7 +61,6 @@ public class ProdutoTask implements Serializable {
 	public Produto update(Produto produto) {
 		produto = repository.update(produto);
 		return produto;
-
 	}
 
 	public List<Produto> listAvisos() {
@@ -74,12 +73,6 @@ public class ProdutoTask implements Serializable {
 		Map<String, Object> param = new HashMap<>();
 		param.put("nome", produto.getNome());
 		return repository.listBy(Produto.PRODUTO_FIND_BY_NOME, param);
-	}
-
-	public Produto findByCodigoBarra(Long codigoBarras) {
-		Map<String, Object> param = new HashMap<>();
-		param.put("codigoBarras", codigoBarras);
-		return repository.listBy(Produto.PRODUTO_FIND_BY_CODIGO_BARRA, param).stream().findFirst().orElse(null);
 	}
 
 	public List<Produto> findAll() {

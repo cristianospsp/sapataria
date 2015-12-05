@@ -74,7 +74,7 @@ public class Pedido implements Serializable {
 	public Double getTotal() {
 		Double total = 0d;
 		for (Map.Entry<Produto, Integer> pair : produtos.entrySet()) {
-			double vlrVenda = pair.getKey().getVlrVenda();
+			double vlrVenda = pair.getKey().getValor();
 			Integer qtd = pair.getValue();
 			total += (qtd * vlrVenda);
 		}

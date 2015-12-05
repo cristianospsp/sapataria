@@ -47,7 +47,7 @@ public class SapatariaWebService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String produtoByCodigo(@PathParam("codigo") String codigo) {
 
-		Produto produto = (codigo != null && !codigo.isEmpty()) ? task.findByCodigoBarra(Long.valueOf(codigo)) : null;
+		Produto produto = (codigo != null && !codigo.isEmpty()) ? task.findById(Long.valueOf(codigo)) : null;
 
 		JSONObject jsonObject = new JSONObject();
 
@@ -56,7 +56,7 @@ public class SapatariaWebService {
 			jsonObject.put("nome", produto.getNome());
 			jsonObject.put("cor", produto.getCor());
 			jsonObject.put("tamanho", produto.getTamanho());
-			jsonObject.put("vlrVenda", produto.getVlrVenda());
+			jsonObject.put("vlrVenda", produto.getValor());
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

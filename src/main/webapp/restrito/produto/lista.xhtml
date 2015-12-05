@@ -20,7 +20,6 @@
 		<div class="row">
 			<div class="col-lg-9">
 				<h:form id="form1">
-
 					<div jsf:id="id-filtro">
 						<div class="panel panel-primary">
 							<div class="panel-heading">
@@ -81,10 +80,10 @@
 												</p:column>
 
 												<p:column headerText="Qtd Total">
-													<h:outputText value="#{produto.qtdTotal}" />
+													<h:outputText value="#{produto.quantidadeTotal}" />
 												</p:column>
 												<p:column headerText="Vlr Venda">
-													<h:outputText value="#{produto.vlrVenda}">
+													<h:outputText value="#{produto.valor}">
 													<f:convertNumber currencyCode="BRL" type="currency"/>
 													</h:outputText>
 												</p:column>
