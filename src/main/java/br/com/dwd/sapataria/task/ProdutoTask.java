@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Named
 public class ProdutoTask implements Serializable {
-
+ 
 	@Inject
 	private Repository<Produto> repository;
 
@@ -54,7 +54,6 @@ public class ProdutoTask implements Serializable {
 		} catch (NoResultException nre) {
 			return null;
 		}
-
 	}
 
 	@Transactional

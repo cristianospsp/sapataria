@@ -10,15 +10,15 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.swing.JOptionPane;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Optional;
 
 @Named
 @ViewScoped
 public class ProdutoController implements Serializable {
- 
+
 	private static final String LISTA = "/sapataria/restrito/produto/lista.xhtml";
 
 	private Produto produto;
@@ -31,38 +31,46 @@ public class ProdutoController implements Serializable {
 	private transient Optional<String> idSelecionado;
 
 	@PostConstruct
-	public void init(){
-		produto = idSelecionado
-			 .map(id -> Long.valueOf(id))
-			 .map(id -> task.findById(id))
-			 .orElse(new Produto());
+	public void init() {
+		produto = idSelecionado.map(id -> Long.valueOf(id)).map(id -> task.findById(id)).orElse(new Produto());
 	}
 
 
-	public void salvar() {
-		/*passa a 'quantidade' para o metodo que verifica...
-		Produto quantidade = quantidade(produto.getQuantidadeTotal(), produto.getQuantidadeMinima());*/
+	public Produto update(Produto produto) {
 		try {
-			String name = produto.getNome();
-			Produto produtoFindName = task.findByName(name);
-			if (produtoFindName != null) {
-				JOptionPane.showMessageDialog(null, "JÁ TEM UM PRODUTO CADASTRADO COM ESTE NOME");
-			} else {
-				task.add(produto);
-				Faces.redirect(LISTA);
-			}
+			task.update(produto);
+			System.out.println("Produto atualizado");
+			Faces.redirect(LISTA);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public void verificar(){
+		//metodo verifica se o ID do produto já exite (para atualizar ou salvar)
+		try {
+			Long id = produto.getId();
+			Produto produtoFindId= task.findById(id);
+			if (produtoFindId != null) {	
+				this.produto = update(produto);
+			} 
+		} catch (Exception e) {
+			this.salvar(produto);
+		}
+
+		
+	}
+
+	public void salvar(Produto produto) {
+		try {
+			//falta implementar verificação do nome e das quantidades
+			task.add(produto);
+			Faces.redirect(LISTA); 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
-	// verificar se a quantidade minina é menor que a qtd total
-/*	public Produto quantidade(int total, int minimo) {
-		if (minimo <= total) {
-			return produto;
-		}
-		return null;
-	}*/
 
 	public Produto getProduto() {
 		return produto;
