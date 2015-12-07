@@ -1,24 +1,92 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
-<ui:composition template="/WEB-INF/templates/template.xhtml">
-    <ui:define name="conteudo">
-        <h:form>
+<ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Painel de Controle</h1>
-                </div>
-            </div>
-
-
-        </h:form>
+	<ui:define name="page-header">
+        PRODUTOS COM ESTOQUE MÍNIMO
     </ui:define>
+	<ui:define name="corpo">
+
+		<div class="row">
+			<div class="col-lg-9">
+				<h:form id="form1">
+					<div jsf:id="id-filtro">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-lg-12">
+										<label class="pull-left">Avisos</label>
+									</div>
+								</div>
+							</div>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<h:panelGroup id="id-tabela" layout="block" rendered="true">
+											<p:dataTable id="id-produtos-quantidade-minima" var="produto"
+												
+												tableStyleClass="table table-striped table-bordered table-hover"
+												emptyMessage="Nenhum Produto encontrado..." paginator="true"
+												rows="5" paginatorPosition="bottom">
+												<p:column headerText="ID">
+													<h:outputText value="#{produto.id}" />
+												</p:column>
+
+												<p:column headerText="Descrição">
+													<h:outputText value="#{produto.nome}" />
+												</p:column>
+
+												<p:column headerText="Fabricante">
+													<h:outputText value="#{produto.fabricante}" />
+												</p:column>
+
+												<p:column headerText="Qtd Total">
+													<h:outputText value="#{produto.quantidadeTotal}" />
+												</p:column>
+
+												<p:column headerText="Tamanho">
+													<h:outputText value="#{produto.tamanho}" />
+												</p:column>
+
+											</p:dataTable>
+										</h:panelGroup>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</h:form>
+			</div>
+
+			<h:panelGroup id="id-painel-inspetor-planejamento">
+				<div class="col-lg-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<span class="glyphicon glyphicon-user"></span> Inspetor
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+								<a href="#" class="list-group-item"> <strong> Dica:
+								</strong> Para realizar a consulta digite pelo menos 3 letras.
+								</a>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<h4></h4>
+						</div>
+					</div>
+				</div>
+			</h:panelGroup>
+
+		</div>
+	</ui:define>
 
 </ui:composition>
 </html>
