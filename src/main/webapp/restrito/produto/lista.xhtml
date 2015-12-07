@@ -92,13 +92,9 @@
 													<h:outputText value="#{produto.tamanho}" />
 												</p:column>
 
-
 												<p:column headerText="" styleClass="column-action">
-													<button class="btn btn-default" jsf:outcome="visualizar"
-														title="Visualizar">
-														<span class="glyphicon glyphicon-eye-open"/>
-														<f:param value="#{produto.id}" name="id-produto"/>
-														<f:ajax execute="@this" render="@form" event="click"/>
+													<button class="btn btn-default" jsf:title="Ver">
+														<span class="glyphicon glyphicon-eye-open"></span>
 													</button>
 												</p:column>
 
