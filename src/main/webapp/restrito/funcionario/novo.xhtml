@@ -9,7 +9,7 @@
 
 <ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
 	<ui:define name="page-header">
-        Cadastro de Funcionario
+        Cadastro de Usuário
     </ui:define>
 
 	<ui:define name="corpo">
@@ -19,81 +19,34 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">Usuário</div>
 						<div class="panel-body">
-
-
 							<div class="col-lg-8">
 								<div class="form-group">
-									<label>Nome: </label> <input class="form-control" 
-									placeholder="Nome" type="text" jsf:id="id-Nome"
-									autofocus="true" jsf:required="true"
-									jsf:requiredMessage="Nome !"
-									jsf:value="#{usuarioController.usuario.nome}" />
+									<label>Nome: </label> <input class="form-control"
+										placeholder="Nome" type="text" jsf:id="id-Nome"
+										autofocus="true" jsf:required="true"
+										jsf:requiredMessage="Nome !"
+										jsf:value="#{usuarioController.usuario.nome}" />
 								</div>
 							</div>
-
-							<div class="col-lg-4">
-								<div class="form-group">
-									<label> CPF: </label> <input class="form-control" 
-									placeholder="CPF" type="text" jsf:id="id-CPF"
-									autofocus="true" jsf:required="true"
-									jsf:requiredMessage="CPF !"
-									jsf:value="#{usuarioController.usuario.cpf}" />
-								</div>
-							</div>
-
 							<div class="col-lg-6">
 								<div class="form-group">
-									<label> E-mail: </label> <input class="form-control" 
-									placeholder="E-mail" type="text" jsf:id="id-email"
-									autofocus="true" jsf:required="true"
-									jsf:requiredMessage="E-mail !"
-									jsf:value="#{usuarioController.usuario.email}" />
+									<label> E-mail: </label> <input class="form-control"
+										placeholder="E-mail" type="email" jsf:id="id-email"
+										autofocus="true" jsf:required="true"
+										jsf:requiredMessage="E-mail !"
+										jsf:value="#{usuarioController.usuario.email}" />
 								</div>
 							</div>
-
-							<div class="col-lg-3">
-								<div class="form-group">
-									<label> Perfil: </label> <input class="form-control" 
-									placeholder="E-mail" type="text" jsf:id="id-Perfil"
-									autofocus="true" jsf:required="true"
-									jsf:requiredMessage="Perfil !"
-									jsf:value="#{usuarioController.usuario.perfil}" />
-								</div>
-							</div>
-
-							<div class="col-lg-3">
-								<div class="form-group">
-									<label> Cargo: </label> <input class="form-control" 
-									placeholder="E-mail" type="text" jsf:id="id-Cargo"
-									autofocus="true" jsf:required="true"
-									jsf:requiredMessage="Cargo !"
-									jsf:value="#{usuarioController.usuario.cargo}" />
-								</div>
-							</div>
-
 							<div class="col-lg-2">
 								<div class="form-group">
-									<label> Senha: </label> <input class="form-control" 
-									placeholder="Senha" type="text" jsf:id="id-Senha"
-									autofocus="true" jsf:required="true"
-									jsf:requiredMessage="Senha !"
-									jsf:value="#{usuarioController.usuario.senha}" />
+									<label> Senha: </label> <input class="form-control"
+										placeholder="Senha" type="password" jsf:id="id-Senha"
+										autofocus="true" jsf:required="true"
+										jsf:requiredMessage="Senha !"
+										jsf:value="#{usuarioController.usuario.senha}" />
 								</div>
 							</div>
-							<br>
-							</br>
-							<div class="col-lg-2">
-								<div class="form-group">
-									<div class="checkbox">
-										<label> <input type="checkbox" value="true">Cadastro
-												ativo</input>
-										</label>
-									</div>
-								</div>
-							</div>
-
 						</div>
-
 						<div class="panel-footer">
 							<div class="row">
 								<div class="col-lg-12">
@@ -103,7 +56,7 @@
 									</div>
 									<div class="col-lg-2 pull-right">
 										<button class="btn btn-sm btn-primary btn-block"
-											jsf:action="#{usuarioController.salvar()}"
+											jsf:action="#{usuarioController.verificar()}"
 											jsf:id="id-btn-salvar">Salvar</button>
 									</div>
 								</div>
@@ -120,16 +73,13 @@
 							<div class="panel-body">
 								<div class="list-group">
 									<a href="#" class="list-group-item"> <i
-										class="fa fa-arrow-right fa-fw"></i> <strong>Campo
-											Nome</strong>, preenchimento obrigatório.
+										class="fa fa-arrow-right fa-fw"></i> <strong>Todos os
+											campos</strong> são de preenchimento obrigatório.
 									</a>
 								</div>
 							</div>
-							<div class="panel-footer">
-								<h4></h4>
-							</div>
 						</div>
-					</div>
+						</div>
 				</h:panelGroup>
 			</div>
 

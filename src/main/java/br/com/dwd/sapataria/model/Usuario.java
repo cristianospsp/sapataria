@@ -43,27 +43,16 @@ public class Usuario implements Serializable {
 	@NotNull
 	private String nome;
 	@NotNull
-	private String cpf;
-	@NotNull
 	private String email;
 	@NotNull
 	private String senha;
-	@NotNull
-	private String perfil;
-	@NotNull
-	private String cargo;
-	@NotNull
-	private boolean cadAtivo;
-	
+
 	public Usuario(){
 	}
-	public Usuario(String nome, String cpf, String email, String senha, String perfil, String cargo){
+	public Usuario(String nome, String email, String senha){
 		this.nome = nome;
-		this.cpf = cpf;
 		this.email = email;
 		this.senha = senha;
-		this.perfil = perfil;
-		this.cargo = cargo;
 		
 	}
 
@@ -83,15 +72,6 @@ public class Usuario implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-
 	public String getEmail() {
 		return email;
 	}
@@ -106,30 +86,6 @@ public class Usuario implements Serializable {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}
-
-	public String getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
-	}
-
-	public boolean getCadAtivo() {
-		return cadAtivo;
-	}
-
-	public void setCadAtivo(boolean cadAtivo) {
-		this.cadAtivo = cadAtivo;
 	}
 
 }
