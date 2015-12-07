@@ -8,15 +8,35 @@ import java.io.Serializable;
  * Created by Cristiano on 06/10/15.
  */
 @Entity
-@NamedQueries(
+@NamedQueries({
 	 @NamedQuery(
 			name = Usuario.USUARIO_LOGIN,
-			query = "select u from Usuario u where u.email = :email and u.senha = :senha"
-	 )
-)
+			query = "select u from Usuario u where u.email = :email and u.senha = :senha"),
+	 	@NamedQuery(
+				name = Usuario.USUARIO_LIST_NAME,
+				query = "select u from Usuario u where u.nome like :nome"),
+		 @NamedQuery(
+				name = Usuario.USUARIO_LIST_ALL,
+				query = "select u from Usuario u"),
+		 @NamedQuery(
+				name = Usuario.USUARIO_FIND_NAME,
+				query = "select u from Usuario u where u.nome = :nome"),
+		 @NamedQuery(
+				name = Usuario.USUARIO_FIND_ID,
+				query = "select u from Usuario u where u.id = :id"),
+		 @NamedQuery(
+				name = Usuario.USUARIO_FIND_BY_NOME,
+				query = "select u from Usuario u where u.nome = :nome")
+})
+
 public class Usuario implements Serializable {
 
 	public static final String USUARIO_LOGIN = "Usuario.login";
+	public static final String USUARIO_LIST_NAME = "Usuario.listName";
+	public static final String USUARIO_FIND_NAME = "Usuario.findName";
+	public static final String USUARIO_LIST_ALL = "Usuario.listAll";
+	public static final String USUARIO_FIND_ID = "Usuario.findId";
+	public static final String USUARIO_FIND_BY_NOME = "Usuario.findByNome";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -34,6 +54,18 @@ public class Usuario implements Serializable {
 	private String cargo;
 	@NotNull
 	private boolean cadAtivo;
+	
+	public Usuario(){
+	}
+	public Usuario(String nome, String cpf, String email, String senha, String perfil, String cargo){
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.senha = senha;
+		this.perfil = perfil;
+		this.cargo = cargo;
+		
+	}
 
 	public Long getId() {
 		return id;
