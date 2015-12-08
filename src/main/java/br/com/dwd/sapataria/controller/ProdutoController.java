@@ -67,9 +67,11 @@ public class ProdutoController implements Serializable {
 			Produto produtoFindName = task.findByName(name);
 			if (produtoFindName == null) {
 				this.salvar(produto);
+			}else{
+				System.out.println("Já tem um cadastro com esse nome");
 			}
 		} catch (Exception e) {
-			System.out.println("Já tem um cadastro com esse nome");
+			e.printStackTrace();	
 		}
 	}
 
