@@ -27,7 +27,7 @@
 									<div class="col-lg-12">
 										<label class="pull-left">Usuários</label>
 										<button class="btn btn-default btn-xs pull-right" title="Novo"
-											jsf:id="id-cria-novo-produto"
+											jsf:id="id-cria-novo-usuario"
 											jsf:outcome="/restrito/funcionario/novo.xhtml">
 											<span class="glyphicon glyphicon-plus"> </span> Novo
 											<!--<f:ajax render="@form" execute="@form"/>-->
@@ -53,7 +53,7 @@
 												jsf:action="#{usuarioFiltroController.buscarUsuario()}"
 												class="btn btn-default" title="Buscar">
 												<i class="glyphicon glyphicon-search" />
-												<f:ajax render="@form" execute="@form"/>
+												<f:ajax render="@form" execute="@form" />
 											</button>
 										</span>
 									</div>
@@ -62,7 +62,7 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<h:panelGroup id="id-tabela" layout="block" rendered="true">
-											<p:dataTable id="id-produtos-filtrados" var="usuario"
+											<p:dataTable id="id-usuarios-filtrados" var="usuario"
 												value="#{usuarioFiltroController.usuarios}"
 												tableStyleClass="table table-striped table-bordered table-hover"
 												emptyMessage="Nenhum usuário encontrado..." paginator="true"
@@ -75,7 +75,6 @@
 												</p:column>
 												<p:column headerText="E-mail">
 													<h:outputText value="#{usuario.email}">
-													<f:convertNumber currencyCode="BRL" type="currency"/>
 													</h:outputText>
 												</p:column>
 												<p:column headerText="" styleClass="column-action">
@@ -87,18 +86,18 @@
 												<p:column headerText="" styleClass="column-action">
 													<button class="btn btn-default" jsf:outcome="novo"
 														title="Editar">
-														<span class="glyphicon glyphicon-pencil"/>
-														<f:param value="#{produto.id}" name="id-produto"/>
-														<f:ajax execute="@this" render="@form" event="click"/>
+														<span class="glyphicon glyphicon-pencil" />
+														<f:param value="#{usuario.id}" name="id-usuario" />
+														<f:ajax execute="@this" render="@form" event="click" />
 													</button>
 												</p:column>
 
 												<p:column headerText="" styleClass="column-action">
 													<button class="btn btn-default" jsf:title="Excluir"
 														jsf:id="btn-excluir"
-														jsf:action="#{usuarioFiltroController.dele}">
-														<span class="glyphicon glyphicon-trash"/>
-														<f:ajax execute="@form" render="@form"/>
+														jsf:action="#{usuarioFiltroController.delete()}">
+														<span class="glyphicon glyphicon-trash" />
+														<f:ajax execute="@form" render="@form" />
 													</button>
 												</p:column>
 											</p:dataTable>
