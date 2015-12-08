@@ -36,18 +36,6 @@ public class UsuarioController implements Serializable {
 	public void init() {
 		usuario = idSelecionado.map(id -> Long.valueOf(id)).map(id -> task.findById(id)).orElse(new Usuario());
 	}
-
-
-	public Usuario update(Usuario usuario) {
-		try {
-			task.update(usuario);
-			System.out.println("Usuário atualizado");
-			Faces.redirect(LISTA);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
 	
 	public void verificar(){
 		try {
@@ -59,6 +47,17 @@ public class UsuarioController implements Serializable {
 		} catch (Exception e) {
 			this.verificarEmail(usuario);
 		}
+	}
+	
+	public Usuario update(Usuario usuario) {
+		try {
+			task.update(usuario);
+			System.out.println("Usuário atualizado");
+			Faces.redirect(LISTA);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void verificarEmail(Usuario usuario){
