@@ -14,62 +14,57 @@
         Visualizar Produto
     </ui:define>
 	<ui:define name="corpo">
-		<h:form id="form1">	
+		<h:form id="form1">
 			<div class="row">
 				<div class="col-lg-9">
 					<div class="panel panel-primary">
 						<div class="panel-heading">Produto</div>
 						<div class="panel-body">
-						
-						<div class="col-lg-2">
+
+							<div class="col-lg-2">
 								<div class="form-group">
 									<label>Identificação: </label> <input class="form-control"
-										type="text" jsf:id="id-id"
-										jsf:label="Id"  readonly="readonly"
-										jsf:value="#{produtoController.produto.id}"/>
+										type="text" jsf:id="id-id" jsf:label="Id" readonly="readonly"
+										jsf:value="#{produtoController.produto.id}" />
 								</div>
 							</div>
-						
+
 							<div class="col-lg-5">
 								<div class="form-group">
 									<label>Descrição: </label> <input class="form-control"
-										type="text" jsf:id="id-descricao"
-										jsf:label="Descrição"  readonly="readonly"
-										jsf:value="#{produtoController.produto.nome}"/>
+										type="text" jsf:id="id-descricao" jsf:label="Descrição"
+										readonly="readonly"
+										jsf:value="#{produtoController.produto.nome}" />
 								</div>
 							</div>
 							<div class="col-lg-5">
 								<div class="form-group">
 									<label> Fabricante: </label> <input class="form-control"
-										 type="text" jsf:id="id-fabricante"
-										readonly="readonly"
+										type="text" jsf:id="id-fabricante" readonly="readonly"
 										jsf:value="#{produtoController.produto.fabricante}" />
 								</div>
 
 							</div>
-							
+
 							<div class="col-lg-2">
 								<div class="form-group">
 									<label> Tamanho: </label> <input class="form-control"
-										jsf:id="id-tamanho" type="text"
-										readonly="readonly"
+										jsf:id="id-tamanho" type="text" readonly="readonly"
 										jsf:value="#{produtoController.produto.tamanho}" />
 								</div>
 							</div>
-							
+
 							<div class="col-lg-4">
 								<div class="form-group">
-									<label> Cor: </label> <input class="form-control" 
-										jsf:id="id-cor" type="text"
-										readonly="readonly"
+									<label> Cor: </label> <input class="form-control"
+										jsf:id="id-cor" type="text" readonly="readonly"
 										jsf:value="#{produtoController.produto.cor}" />
 								</div>
 							</div>
 							<div class="col-lg-2">
 								<div class="form-group">
 									<label> Qtd mínima: </label> <input class="form-control"
-										jsf:id="id-quantidade-minima" type="text"
-									readonly="readonly"
+										jsf:id="id-quantidade-minima" type="text" readonly="readonly"
 										jsf:value="#{produtoController.produto.quantidadeMinima}" />
 								</div>
 							</div>
@@ -77,8 +72,7 @@
 							<div class="col-lg-2">
 								<div class="form-group">
 									<label> Qtd total: </label> <input class="form-control"
-										 jsf:id="id-quantidade-total" type="text"
-										readonly="readonly"
+										jsf:id="id-quantidade-total" type="text" readonly="readonly"
 										jsf:value="#{produtoController.produto.quantidadeTotal}" />
 								</div>
 							</div>
@@ -86,8 +80,7 @@
 							<div class="col-lg-2">
 								<div class="form-group">
 									<label> Valor venda: </label> <input class="form-control"
-										jsf:id="id-valor-venda" type="text"
-										readonly="readonly"
+										jsf:id="id-valor-venda" type="text" readonly="readonly"
 										jsf:value="#{produtoController.produto.valor}">
 									<f:convertNumber minFractionDigits="2"></f:convertNumber>
 									</input>
@@ -104,12 +97,14 @@
 											jsf:outcome="lista">Voltar</a>
 									</div>
 									<div class="col-lg-2 pull-right">
-									<button class="btn btn-sm btn-primary btn-block"
-											jsf:id="btn-editar" jsf:outcome="novo" title="Editar">Editar
-											<f:param value="#{produtoController.produto.id}" name="id-produto" />
-														<f:ajax execute="@this" render="@form" event="click" />
-											</button>
-								<!-- 	<button  class="btn btn-sm btn-primary btn-block" jsf:outcome="novo"
+										<button class="btn btn-sm btn-primary btn-block"
+											jsf:id="btn-editar" jsf:outcome="novo" title="Editar">
+											Editar
+											<f:param value="#{produtoController.produto.id}"
+												name="id-produto" />
+											<f:ajax execute="@this" render="@form" event="click" />
+										</button>
+										<!-- 	<button  class="btn btn-sm btn-primary btn-block" jsf:outcome="novo"
 														title="Editar">
 														
 														<f:param value="#{produto.id}" name="id-produto" />
@@ -130,8 +125,8 @@
 							<div class="panel-body">
 								<div class="list-group">
 									<a href="#" class="list-group-item"> <i
-										class="fa fa-arrow-right fa-fw"></i> <strong>Todos os
-											campos</strong>, preenchimento obrigatório.
+										class="fa fa-arrow-right fa-fw"></i> <strong>Para
+											atualizar algum campo</strong>, clique em Editar.
 									</a>
 								</div>
 							</div>
