@@ -2,47 +2,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:of="http://omnifaces.org/functions"
-      xmlns:o="http://omnifaces.org/ui">
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
 
 <ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
 
-    <ui:define name="page-header">
-        LISTA DE FUNCIONÁRIOS
+	<ui:define name="page-header">
+        LISTA DE USUARIOS
     </ui:define>
+	<ui:define name="corpo">
 
-    <ui:define name="corpo">
+		<div class="row">
+			<div class="col-lg-9">
+				<h:form id="form1">
+					<div jsf:id="id-filtro">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<div class="row">
+									<div class="col-lg-12">
+										<label class="pull-left">Usuários</label>
+										<button class="btn btn-default btn-xs pull-right" title="Novo"
+											jsf:id="id-cria-novo-produto"
+											jsf:outcome="/restrito/funcionario/novo.xhtml">
+											<span class="glyphicon glyphicon-plus"> </span> Novo
+											<!--<f:ajax render="@form" execute="@form"/>-->
+										</button>
+									</div>
+								</div>
+							</div>
+							<div class="panel-body">
 
-        <div class="row">
-            <div class="col-lg-9">
-                <h:form id="form1">
+								<div class="row">
 
-                    <div jsf:id="id-filtro">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <label class="pull-left">Novo</label>
-                                        <button class="btn btn-default btn-xs pull-right"
-                                                title="Novo" jsf:id="id-cria-novo-funcionario"
-                                                jsf:outcome="/restrito/funcionario/novo.xhtml">
-                                            <span class="glyphicon glyphicon-plus"> </span> Novo
-                                            <!--<f:ajax render="@form" execute="@form"/>-->
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel-body">
-
-                                <div class="row">
-
-                                    <div class="form-group col-lg-10">
-                                        <label class="control-label">Nome:</label> <input
+									<div class="form-group col-lg-10">
+										<label class="control-label">Nome:</label> <input
 											class="form-control input-sm" type="text"
 											jsf:id="nomeUsuario" maxlength="50" jsf:autofocus="true"
 											jsf:required="true"
@@ -51,7 +49,8 @@
 									</div>
 									<div class="form-group col-lg-1">
 										<label></label> <span class="input-group">
-											<button	jsf:action="#{usuarioFiltroController.buscarUsuario()}"
+											<button
+												jsf:action="#{usuarioFiltroController.buscarUsuario()}"
 												class="btn btn-default" title="Buscar">
 												<i class="glyphicon glyphicon-search" />
 												<f:ajax render="@form" execute="@form"/>
@@ -63,39 +62,22 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<h:panelGroup id="id-tabela" layout="block" rendered="true">
-											<p:dataTable id="id-usuario-filtrados" var="usuario"
+											<p:dataTable id="id-produtos-filtrados" var="usuario"
 												value="#{usuarioFiltroController.usuarios}"
 												tableStyleClass="table table-striped table-bordered table-hover"
-												emptyMessage="Nenhum Usuário encontrado..." paginator="true"
+												emptyMessage="Nenhum usuário encontrado..." paginator="true"
 												rows="5" paginatorPosition="bottom">
 												<p:column headerText="ID">
 													<h:outputText value="#{usuario.id}" />
 												</p:column>
-
 												<p:column headerText="Nome">
 													<h:outputText value="#{usuario.nome}" />
 												</p:column>
-
-												<p:column headerText="CPF">
-													<h:outputText value="#{usuario.cpf}" />
+												<p:column headerText="E-mail">
+													<h:outputText value="#{usuario.email}">
+													<f:convertNumber currencyCode="BRL" type="currency"/>
+													</h:outputText>
 												</p:column>
-
-												<p:column headerText="Email">
-													<h:outputText value="#{usuario.email}" />
-												</p:column>
-												
-												<p:column headerText="Senha">
-													<h:outputText value="#{usuario.senha}"/>
-												</p:column>
-												
-												<p:column headerText="Perfl">
-													<h:outputText value="#{usuario.perfil}" />
-												</p:column>
-												
-												<p:column headerText="Cargo">
-													<h:outputText value="#{usuario.cargo}" />
-												</p:column>
-
 												<p:column headerText="" styleClass="column-action">
 													<button class="btn btn-default" jsf:title="Ver">
 														<span class="glyphicon glyphicon-eye-open"></span>
@@ -114,12 +96,11 @@
 												<p:column headerText="" styleClass="column-action">
 													<button class="btn btn-default" jsf:title="Excluir"
 														jsf:id="btn-excluir"
-														jsf:action="#{produtoFiltroController.delete(produto)}">
+														jsf:action="#{usuarioFiltroController.dele}">
 														<span class="glyphicon glyphicon-trash"/>
 														<f:ajax execute="@form" render="@form"/>
 													</button>
 												</p:column>
-
 											</p:dataTable>
 										</h:panelGroup>
 									</div>
@@ -132,29 +113,29 @@
 				</h:form>
 			</div>
 
-            <h:panelGroup id="id-painel-inspetor-planejamento">
-                <div class="col-lg-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <span class="glyphicon glyphicon-user"></span> Inspetor
-                        </div>
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item">
-                                    <strong> Dica: </strong> Para realizar a consulta digite pelo menos 3 letras.
-                                </a>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <h4></h4>
-                        </div>
-                    </div>
-                </div>
-            </h:panelGroup>
+			<h:panelGroup id="id-painel-inspetor-planejamento">
+				<div class="col-lg-3">
+					<div class="panel panel-primary">
+						<div class="panel-heading">
+							<span class="glyphicon glyphicon-user"></span> Inspetor
+						</div>
+						<div class="panel-body">
+							<div class="list-group">
+								<a href="#" class="list-group-item"> <strong> Dica:
+								</strong> Para realizar a consulta digite pelo menos 3 letras.
+								</a>
+							</div>
+						</div>
+						<div class="panel-footer">
+							<h4></h4>
+						</div>
+					</div>
+				</div>
+			</h:panelGroup>
 
-        </div>
+		</div>
 
-    </ui:define>
+	</ui:define>
 </ui:composition>
 </html>
 

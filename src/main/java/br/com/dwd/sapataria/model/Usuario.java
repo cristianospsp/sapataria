@@ -26,7 +26,10 @@ import java.io.Serializable;
 				query = "select u from Usuario u where u.id = :id"),
 		 @NamedQuery(
 				name = Usuario.USUARIO_FIND_BY_NOME,
-				query = "select u from Usuario u where u.nome = :nome")
+				query = "select u from Usuario u where u.nome = :nome"),
+		 @NamedQuery(
+					name = Usuario.USUARIO_FIND_BY_EMAIL,
+					query = "select u from Usuario u where u.email = :email")
 })
 
 public class Usuario implements Serializable {
@@ -37,6 +40,7 @@ public class Usuario implements Serializable {
 	public static final String USUARIO_LIST_ALL = "Usuario.listAll";
 	public static final String USUARIO_FIND_ID = "Usuario.findId";
 	public static final String USUARIO_FIND_BY_NOME = "Usuario.findByNome";
+	public static final String USUARIO_FIND_BY_EMAIL = "Usuario.findByEmail";
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

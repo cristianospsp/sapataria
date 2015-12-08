@@ -50,7 +50,6 @@ public class UsuarioController implements Serializable {
 	}
 	
 	public void verificar(){
-		//metodo verifica se o ID do produto já exite (para atualizar ou salvar)
 		try {
 			Long id = usuario.getId();
 			Usuario usuarioFindId= task.findById(id);
@@ -58,10 +57,24 @@ public class UsuarioController implements Serializable {
 				this.usuario = update(usuario);
 			} 
 		} catch (Exception e) {
-			this.salvar(usuario);
+			this.verificarEmail(usuario);
 		}
 	}
 
+	public void verificarEmail(Usuario usuario){
+		try{
+			String email = usuario.getEmail();
+			Usuario usuarioFindEmail = task.findByEmail(email);
+			if(usuarioFindEmail == null){
+				this.salvar(usuario);
+			}else{
+				System.out.println("Já tem um cadastro com esse email");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void salvar(Usuario usuario)  {
 		try {
 			task.add(usuario);
@@ -70,7 +83,6 @@ public class UsuarioController implements Serializable {
 			e.printStackTrace();
 		}
 	}
-
 
 	public Usuario getUsuario() {
 		return usuario;

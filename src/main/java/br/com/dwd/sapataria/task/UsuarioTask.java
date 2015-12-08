@@ -49,11 +49,11 @@ public class UsuarioTask implements Serializable {
 		return repository.findBy(Usuario.USUARIO_FIND_ID, param);
 	}
 
-	public Usuario findByName(String name) {
+	public Usuario findByEmail(String email) {
 		Map<String, Object> param = new HashMap<>();
-		param.put("nome", name);
+		param.put("email", email);
 		try {
-			return repository.findBy(Usuario.USUARIO_FIND_NAME, param);
+			return repository.findBy(Usuario.USUARIO_FIND_BY_EMAIL, param);
 		} catch (NoResultException nre) {
 			return null;
 		}
@@ -63,12 +63,6 @@ public class UsuarioTask implements Serializable {
 	public Usuario update(Usuario usuario) {
 		usuario = repository.update(usuario);
 		return usuario;
-	}
-
-	public List<Usuario> listAvisos() {
-		Map<String, Object> param = new HashMap<>();
-		//param.put("quantidadeMinima", );
-		return repository.listBy(Usuario.USUARIO_LIST_NAME, param);
 	}
 
 	public List<Usuario> buscarUSuario(Usuario usuario) {
