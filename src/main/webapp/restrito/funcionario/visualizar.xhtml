@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/ui">
+
+<ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
+	<ui:define name="page-header">
+        Visualizar usuário
+    </ui:define>
+	<ui:define name="corpo">
+		<h:form id="form1">
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="panel panel-primary">
+						<div class="panel-heading">usuario</div>
+						<div class="panel-body">
+
+							<div class="col-lg-2">
+								<div class="form-group">
+									<label>Identificação: </label> <input class="form-control"
+										type="text" jsf:id="id-id" jsf:label="Id" readonly="readonly"
+										jsf:value="#{usuarioController.usuario.id}" />
+								</div>
+							</div>
+
+							<div class="col-lg-5">
+								<div class="form-group">
+									<label>Nome: </label> <input class="form-control"
+										type="text" jsf:id="id-descricao" jsf:label="Descrição"
+										readonly="readonly"
+										jsf:value="#{usuarioController.usuario.nome}" />
+								</div>
+							</div>
+							<div class="col-lg-5">
+								<div class="form-group">
+									<label> Email: </label> <input class="form-control"
+										type="text" jsf:id="id-fabricante" readonly="readonly"
+										jsf:value="#{usuarioController.usuario.email}" />
+								</div>
+
+							</div>
+
+							<div class="col-lg-2">
+								<div class="form-group">
+									<label> Senha: </label> <input class="form-control"
+										jsf:id="id-tamanho" type="text" readonly="readonly"
+										jsf:value="#{usuarioController.usuario.senha}" />
+								</div>
+							</div>
+						</div>
+
+						<div class="panel-footer">
+							<div class="row">
+								<div class="col-lg-12">
+									<div class="col-lg-2 pull-left">
+										<a class="btn btn-sm btn-default btn-block"
+											jsf:outcome="lista">Voltar</a>
+									</div>
+									<div class="col-lg-2 pull-right">
+										<button class="btn btn-sm btn-primary btn-block"
+											jsf:id="btn-editar" jsf:outcome="novo" title="Editar">
+											Editar
+											<f:param value="#{usuarioController.usuario.id}"
+												name="id-usuario" />
+											<f:ajax execute="@this" render="@form" event="click" />
+										</button>
+										<!-- 	<button  class="btn btn-sm btn-primary btn-block" jsf:outcome="novo"
+														title="Editar">
+														
+														<f:param value="#{usuario.id}" name="id-usuario" />
+														<f:ajax execute="@this" render="@form" event="click" />
+									</button> -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<h:panelGroup id="id-painel-inspetor">
+					<div class="col-lg-3">
+						<div class="panel panel-primary">
+							<div class="panel-heading">
+								<span class="glyphicon glyphicon-user"></span> Inspetor
+							</div>
+							<div class="panel-body">
+								<div class="list-group">
+									<a href="#" class="list-group-item"> <i
+										class="fa fa-arrow-right fa-fw"></i> <strong>Para
+											atualizar algum campo</strong>, clique em Editar.
+									</a>
+								</div>
+							</div>
+							<div class="panel-footer">
+								<h4></h4>
+							</div>
+						</div>
+					</div>
+				</h:panelGroup>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
+

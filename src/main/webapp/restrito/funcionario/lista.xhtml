@@ -13,7 +13,7 @@
 <ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
 
 	<ui:define name="page-header">
-        LISTA DE USUARIOS
+        Lista de usuários
     </ui:define>
 	<ui:define name="corpo">
 
@@ -77,9 +77,13 @@
 													<h:outputText value="#{usuario.email}">
 													</h:outputText>
 												</p:column>
+
 												<p:column headerText="" styleClass="column-action">
-													<button class="btn btn-default" jsf:title="Ver">
-														<span class="glyphicon glyphicon-eye-open"></span>
+													<button class="btn btn-default" jsf:outcome="visualizar"
+														title="Visualizar">
+														<span class="glyphicon glyphicon-eye-open" />
+														<f:param value="#{usuario.id}" name="id-usuario" />
+														<f:ajax execute="@this" render="@form" event="click" />
 													</button>
 												</p:column>
 
@@ -95,7 +99,7 @@
 												<p:column headerText="" styleClass="column-action">
 													<button class="btn btn-default" jsf:title="Excluir"
 														jsf:id="btn-excluir"
-														jsf:action="#{usuarioFiltroController.delete()}">
+														jsf:action="#{usuarioFiltroController.delete(usuario)}">
 														<span class="glyphicon glyphicon-trash" />
 														<f:ajax execute="@form" render="@form" />
 													</button>
@@ -107,8 +111,6 @@
 							</div>
 						</div>
 					</div>
-
-
 				</h:form>
 			</div>
 
