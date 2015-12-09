@@ -62,21 +62,6 @@
 										<a class="btn btn-sm btn-default btn-block"
 											jsf:outcome="lista">Voltar</a>
 									</div>
-									<div class="col-lg-2 pull-right">
-										<button class="btn btn-sm btn-primary btn-block"
-											jsf:id="btn-editar" jsf:outcome="novo" title="Editar">
-											Editar
-											<f:param value="#{usuarioController.usuario.id}"
-												name="id-usuario" />
-											<f:ajax execute="@this" render="@form" event="click" />
-										</button>
-										<!-- 	<button  class="btn btn-sm btn-primary btn-block" jsf:outcome="novo"
-														title="Editar">
-														
-														<f:param value="#{usuario.id}" name="id-usuario" />
-														<f:ajax execute="@this" render="@form" event="click" />
-									</button> -->
-									</div>
 								</div>
 							</div>
 						</div>

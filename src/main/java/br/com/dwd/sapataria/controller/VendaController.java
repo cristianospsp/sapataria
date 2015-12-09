@@ -5,19 +5,17 @@ import br.com.dwd.sapataria.model.Pedido;
 import br.com.dwd.sapataria.model.Produto;
 import br.com.dwd.sapataria.model.Venda;
 import br.com.dwd.sapataria.task.VendaTask;
-import org.omnifaces.util.Faces;
 
 import javax.annotation.PostConstruct;
-
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.IOException;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
