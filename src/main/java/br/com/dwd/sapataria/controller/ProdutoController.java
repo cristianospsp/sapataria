@@ -7,6 +7,8 @@ import br.com.dwd.sapataria.task.ProdutoTask;
 import org.omnifaces.util.Faces;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +19,7 @@ import java.util.Optional;
 
 @Named
 @ViewScoped
-public class ProdutoController implements Serializable {
+public class ProdutoController extends Controller implements Serializable {
 
 	private static final String LISTA = "/sapataria/restrito/produto/lista.xhtml";
 
@@ -35,51 +37,28 @@ public class ProdutoController implements Serializable {
 		produto = idSelecionado.map(id -> Long.valueOf(id)).map(id -> task.findById(id)).orElse(new Produto());
 	}
 
-	public void verificar() {
-		// metodo verifica se o ID do produto já exite (para atualizar ou
-		// salvar)
-		try {
-			Long id = produto.getId();
-			Produto produtoFindId = task.findById(id);
-			if (produtoFindId != null) {
-				this.produto = update(produto);
-			}
-		} catch (Exception e) {
-			this.verificarNome(produto);
-		}
-
-	}
-
-	public Produto update(Produto produto) {
-		try {
+	public String salvar() throws IOException {
+		String retorno = null;
+		if (produto.getId() != null) {
 			task.update(produto);
-			System.out.println("Produto atualizado");
-			Faces.redirect(LISTA);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	public void verificarNome(Produto produto) {
-		try {
-			String name = produto.getNome();
-			Produto produtoFindName = task.findByName(name);
-			if (produtoFindName == null) {
-				this.salvar(produto);
+			messageSucess(getFacesContext(), "Salvo", "Dados Salvo Com Sucesso!");
+			retorno = "lista.xhtml?faces-redirect=true";
+		} else {
+			if (task.findByName(produto.getNome()) == null) {
+				task.add(produto);
+				messageSucess(getFacesContext(), "Salvo", "Dados Salvo Com Sucesso!");
+				retorno = "lista.xhtml?faces-redirect=true";
+			} else {
+				messageError(getFacesContext(), "Nome Inválido", "Existe um produto cadastrado com esse nome.");
 			}
-		} catch (Exception e) {
-			System.out.println("Já tem um cadastro com esse nome");
 		}
+		return retorno;
 	}
 
-	public void salvar(Produto produto) {
-		try {
-			task.add(produto);
-			Faces.redirect(LISTA);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	private FacesContext getFacesContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		return context;
 	}
 
 	public Produto getProduto() {

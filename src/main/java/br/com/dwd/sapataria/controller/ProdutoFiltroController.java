@@ -3,6 +3,7 @@ package br.com.dwd.sapataria.controller;
 import br.com.dwd.sapataria.model.Produto;
 import br.com.dwd.sapataria.task.ProdutoTask;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -12,11 +13,10 @@ import java.util.List;
 
 @Named
 @ViewScoped
-public class ProdutoFiltroController implements Serializable {
+public class ProdutoFiltroController extends Controller implements Serializable {
 
 	private Produto produto = new Produto();
 	private List<Produto> produtos = new ArrayList<>();
-
 
 	@Inject
 	private ProdutoTask task;
@@ -30,14 +30,20 @@ public class ProdutoFiltroController implements Serializable {
 	}
 
 	public void delete(Produto produto) {
-
 		if (produto.getQuantidadeTotal() <= 0) {
 			task.delete(produto);
 			buscarProduto();
 			this.produto = new Produto();
+			messageSucess(getFacesContext(), "Sucesso !", "Produto Excluído.");
 		} else {
-			System.out.println("ESTE PRODUTO AINDA ESTÁ COM ESTOQUE >0");
+			messageWarn(getFacesContext(), "Produto em estoque !", "Indispoível para Exclusão.");
 		}
+	}
+
+	private FacesContext getFacesContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		return context;
 	}
 
 	public Produto getProduto() {

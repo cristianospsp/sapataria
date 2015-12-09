@@ -5,6 +5,7 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui"
 	xmlns:of="http://omnifaces.org/functions">
 
 <ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
@@ -12,6 +13,7 @@
         Cadastro de Produto
     </ui:define>
 	<ui:define name="corpo">
+		<p:growl id="messages" showDetail="true" closable="true" autoUpdate="true" showSummary="true"/>
 		<h:form id="form1">	
 			<div class="row">
 				<div class="col-lg-9">
@@ -99,7 +101,7 @@
 									</div>
 									<div class="col-lg-2 pull-right">
 									<button class="btn btn-sm btn-primary btn-block"
-											jsf:action="#{produtoController.verificar()}"
+											jsf:action="#{produtoController.salvar()}"
 											jsf:id="id-btn-salvar">Salvar</button>
 									</div>
 								</div>
