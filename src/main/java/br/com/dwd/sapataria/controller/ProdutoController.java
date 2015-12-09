@@ -4,15 +4,11 @@ import br.com.dwd.sapataria.model.Produto;
 import br.com.dwd.sapataria.qualify.HttpParam;
 import br.com.dwd.sapataria.task.ProdutoTask;
 
-import org.omnifaces.util.Faces;
-
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Optional;

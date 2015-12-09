@@ -79,4 +79,9 @@ public class ProdutoTask implements Serializable {
 	}
 
 
+	public List<Produto> findQtdMenorQueDez() {
+		Map<String, Object> param = new HashMap<>();
+		param.put("qtd", 10);
+		return repository.listBy(Produto.PRODUTO_FIND_QTD_ESTOQUE_MENOR_QUE, param);
+	}
 }
