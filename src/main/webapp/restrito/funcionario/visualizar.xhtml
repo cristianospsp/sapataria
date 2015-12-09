@@ -11,80 +11,46 @@
 
 <ui:composition template="/WEB-INF/templates/template-titulo.xhtml">
 	<ui:define name="page-header">
-        Visualizar Produto
+        Visualizar usuário
     </ui:define>
 	<ui:define name="corpo">
 		<h:form id="form1">
 			<div class="row">
 				<div class="col-lg-9">
 					<div class="panel panel-primary">
-						<div class="panel-heading">Produto</div>
+						<div class="panel-heading">usuario</div>
 						<div class="panel-body">
 
 							<div class="col-lg-2">
 								<div class="form-group">
 									<label>Identificação: </label> <input class="form-control"
 										type="text" jsf:id="id-id" jsf:label="Id" readonly="readonly"
-										jsf:value="#{produtoController.produto.id}" />
+										jsf:value="#{usuarioController.usuario.id}" />
 								</div>
 							</div>
 
 							<div class="col-lg-5">
 								<div class="form-group">
-									<label>Descrição: </label> <input class="form-control"
+									<label>Nome: </label> <input class="form-control"
 										type="text" jsf:id="id-descricao" jsf:label="Descrição"
 										readonly="readonly"
-										jsf:value="#{produtoController.produto.nome}" />
+										jsf:value="#{usuarioController.usuario.nome}" />
 								</div>
 							</div>
 							<div class="col-lg-5">
 								<div class="form-group">
-									<label> Fabricante: </label> <input class="form-control"
+									<label> Email: </label> <input class="form-control"
 										type="text" jsf:id="id-fabricante" readonly="readonly"
-										jsf:value="#{produtoController.produto.fabricante}" />
+										jsf:value="#{usuarioController.usuario.email}" />
 								</div>
 
 							</div>
 
 							<div class="col-lg-2">
 								<div class="form-group">
-									<label> Tamanho: </label> <input class="form-control"
+									<label> Senha: </label> <input class="form-control"
 										jsf:id="id-tamanho" type="text" readonly="readonly"
-										jsf:value="#{produtoController.produto.tamanho}" />
-								</div>
-							</div>
-
-							<div class="col-lg-4">
-								<div class="form-group">
-									<label> Cor: </label> <input class="form-control"
-										jsf:id="id-cor" type="text" readonly="readonly"
-										jsf:value="#{produtoController.produto.cor}" />
-								</div>
-							</div>
-							<div class="col-lg-2">
-								<div class="form-group">
-									<label> Qtd mínima: </label> <input class="form-control"
-										jsf:id="id-quantidade-minima" type="text" readonly="readonly"
-										jsf:value="#{produtoController.produto.quantidadeMinima}" />
-								</div>
-							</div>
-
-							<div class="col-lg-2">
-								<div class="form-group">
-									<label> Qtd total: </label> <input class="form-control"
-										jsf:id="id-quantidade-total" type="text" readonly="readonly"
-										jsf:value="#{produtoController.produto.quantidadeTotal}" />
-								</div>
-							</div>
-
-							<div class="col-lg-2">
-								<div class="form-group">
-									<label> Valor venda: </label> <input class="form-control"
-										jsf:id="id-valor-venda" type="text" readonly="readonly"
-										jsf:value="#{produtoController.produto.valor}">
-									<f:convertNumber minFractionDigits="2"></f:convertNumber>
-									</input>
-
+										jsf:value="#{usuarioController.usuario.senha}" />
 								</div>
 							</div>
 						</div>
@@ -100,14 +66,14 @@
 										<button class="btn btn-sm btn-primary btn-block"
 											jsf:id="btn-editar" jsf:outcome="novo" title="Editar">
 											Editar
-											<f:param value="#{produtoController.produto.id}"
-												name="id-produto" />
+											<f:param value="#{usuarioController.usuario.id}"
+												name="id-usuario" />
 											<f:ajax execute="@this" render="@form" event="click" />
 										</button>
 										<!-- 	<button  class="btn btn-sm btn-primary btn-block" jsf:outcome="novo"
 														title="Editar">
 														
-														<f:param value="#{produto.id}" name="id-produto" />
+														<f:param value="#{usuario.id}" name="id-usuario" />
 														<f:ajax execute="@this" render="@form" event="click" />
 									</button> -->
 									</div>
@@ -137,7 +103,6 @@
 					</div>
 				</h:panelGroup>
 			</div>
-
 		</h:form>
 	</ui:define>
 </ui:composition>
