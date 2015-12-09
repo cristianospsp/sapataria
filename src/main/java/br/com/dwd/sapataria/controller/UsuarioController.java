@@ -1,31 +1,23 @@
 package br.com.dwd.sapataria.controller;
 
-import br.com.dwd.sapataria.model.Produto;
 import br.com.dwd.sapataria.model.Usuario;
 import br.com.dwd.sapataria.qualify.HttpParam;
 import br.com.dwd.sapataria.task.UsuarioTask;
 
-import org.omnifaces.util.Faces;
-
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Optional;
 
 @Named
 @ViewScoped
-public class UsuarioController implements Serializable {
+public class UsuarioController extends Controller implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	private static final String LISTA = "/sapataria/restrito/funcionario/lista.xhtml";
-
-	private Usuario usuario = new Usuario();
-
+	private Usuario usuario;
 	@Inject
 	private UsuarioTask task;
 	@Inject
@@ -37,51 +29,23 @@ public class UsuarioController implements Serializable {
 		usuario = idSelecionado.map(id -> Long.valueOf(id)).map(id -> task.findById(id)).orElse(new Usuario());
 	}
 
-
-	public Usuario update(Usuario usuario) {
-		try {
+	public String salvar() {
+		String retorno = null;
+		if (usuario.getId() != null) {
 			task.update(usuario);
-			System.out.println("Usuário atualizado");
-			Faces.redirect(LISTA);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-	public void verificar(){
-		try {
-			Long id = usuario.getId();
-			Usuario usuarioFindId= task.findById(id);
-			if (usuarioFindId != null) {	
-				this.usuario = update(usuario);
-			} 
-		} catch (Exception e) {
-			this.verificarEmail(usuario);
-		}
-	}
-
-	public void verificarEmail(Usuario usuario){
-		try{
-			String email = usuario.getEmail();
-			Usuario usuarioFindEmail = task.findByEmail(email);
-			if(usuarioFindEmail == null){
-				this.salvar(usuario);
-			}else{
-				System.out.println("Já tem um cadastro com esse email");
+			messageSucess(getFacesContext(), "Salvo", "Dados Salvo Com Sucesso!");
+			retorno = "lista.xhtml?faces-redirect=true";
+		} else {
+			if (task.findByEmail(usuario.getEmail()) == null) {
+				task.add(usuario);
+				messageSucess(getFacesContext(), "Salvo", "Dados Salvo Com Sucesso!");
+				retorno = "lista.xhtml?faces-redirect=true";
+			} else {
+				messageError(getFacesContext(), "E-mail Inválido", "Existe um usuário cadastrado com esse e-mail.");
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
-	}
-	
-	public void salvar(Usuario usuario)  {
-		try {
-			task.add(usuario);
-			Faces.redirect(LISTA);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		return retorno;
 	}
 
 	public Usuario getUsuario() {
@@ -92,8 +56,10 @@ public class UsuarioController implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public void listar() {
-
+	private FacesContext getFacesContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		return context;
 	}
 
 }

@@ -16,7 +16,7 @@
         LISTA DE USUARIOS
     </ui:define>
 	<ui:define name="corpo">
-
+		<p:growl id="messages" showDetail="true" closable="true" autoUpdate="true" showSummary="true"/>
 		<div class="row">
 			<div class="col-lg-9">
 				<h:form id="form1">
@@ -95,7 +95,7 @@
 												<p:column headerText="" styleClass="column-action">
 													<button class="btn btn-default" jsf:title="Excluir"
 														jsf:id="btn-excluir"
-														jsf:action="#{usuarioFiltroController.delete()}">
+														jsf:action="#{usuarioFiltroController.delete(usuario)}">
 														<span class="glyphicon glyphicon-trash" />
 														<f:ajax execute="@form" render="@form" />
 													</button>
@@ -121,7 +121,7 @@
 						<div class="panel-body">
 							<div class="list-group">
 								<a href="#" class="list-group-item"> <strong> Dica:
-								</strong> Para realizar a consulta digite pelo menos 3 letras.
+								</strong> Para realizar a consulta digite pelo menos 1 letra.
 								</a>
 							</div>
 						</div>
