@@ -1,8 +1,6 @@
 package br.com.dwd.sapataria.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
@@ -11,14 +9,20 @@ import java.util.stream.Collectors;
 /**
  * Created by Cristiano on 19/10/15.
  */
-//@Entity
+@Entity
 public class Pedido implements Serializable {
 
-	//@Id
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	/*@OneToMany
 	private List<Produto> produtos = new ArrayList<>();*/
 
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(joinColumns = {@JoinColumn(name = "idPedido",referencedColumnName = "id")})
+	@MapKeyEnumerated(EnumType.STRING)
+	@MapKeyColumn(name = "produto")
+	@Column(name = "produto")
 	private Map<Produto, Integer> produtos = new HashMap<>();
 	private String vendedor;
 	private Long numero;
