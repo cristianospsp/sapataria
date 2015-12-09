@@ -18,27 +18,19 @@ public class VendaTask implements Serializable {
 
 	@Inject
 	private Repository<Venda> repository;
-	//private EntityManager entitymanager = ProdutorEntityManager.getEntityManager();
 
 	public List<Venda> findAll() {
-		/*Map<String, Object> param = new HashMap<>();
-		List<Venda> vendas = repository.listBy(Venda.VENDA_FIND_ALL, param);*/
-		//List<Venda> vendas = entitymanager.listAll();
-//		return vendas;
-		return Collections.emptyList();
+		return repository.listAll();
 	}
 
 	@Transactional
 	public Venda insertOrUpdate(Venda venda) {
-		/*EntityTransaction transaction = entitymanager.getTransaction();
 		if (venda.getId() == null){
-			transaction.begin();
-			entitymanager.persist(venda);
-			transaction.commit();
+			repository.add(venda);
 		}else {
-			venda = entitymanager.merge(venda);
-		}*/
-		return null;
+			venda = repository.update(venda);
+		}
+		return venda;
 	}
 
 }

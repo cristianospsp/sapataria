@@ -17,7 +17,7 @@
     </ui:define>
 
     <ui:define name="corpo">
-
+        <p:growl id="messages" showDetail="true" closable="true" autoUpdate="true" showSummary="true"/>
         <div class="row">
             <div class="col-lg-9">
                 <h:form id="form1">
@@ -30,8 +30,7 @@
                                         <label class="pull-left">Vendas do Dia</label>
                                         <button class="btn btn-default btn-xs pull-right"
                                                 title="Novo" jsf:id="id-cria-novo-produto"
-                                                jsf:outcome="/restrito/venda/novo.xhtml">
-                                            <span class="glyphicon glyphicon-plus"> </span> Novo
+                                                jsf:outcome="/restrito/venda/novo.xhtml"> Ver Pedidos
                                             <!--<f:ajax render="@form" execute="@form"/>-->
                                         </button>
                                     </div>
@@ -40,11 +39,11 @@
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
-                                        <button class="btn btn-default btn-xs pull-right"
+                                        <button class="btn btn-default btn-xs pull-left"
                                                 title="Novo" jsf:id="id-atualizar"
                                                 jsf:action="#{vendaController.refresh}">
                                             <span class="fa fa-refresh"> </span> Atualizar
-                                            <!--<f:ajax render="@form" execute="@form"/>-->
+                                            <f:ajax render="id-produtos-filtrados" execute="@this"/>
                                         </button>
                                     </div>
                                 </div>
@@ -60,7 +59,7 @@
                                                          rows="5"
                                                          paginatorPosition="bottom">
 
-                                                <p:column headerText="Vendedor" width="55%">
+                                                <p:column headerText="Vendedor" width="45%">
                                                     #{venda.nomeVendedor}
                                                 </p:column>
 
@@ -72,8 +71,10 @@
                                                     R$ #{venda.totalVenda}
                                                 </p:column>
 
-                                                <p:column headerText="Data/Hora" width="15%">
-                                                    #{venda.dataVenda}
+                                                <p:column headerText="Data/Hora" width="25%">
+                                                    <h:outputText value="#{venda.getDataVendaToDate()}">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss"/>
+                                                    </h:outputText>
                                                 </p:column>
 
                                             </p:dataTable>

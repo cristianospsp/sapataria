@@ -18,7 +18,20 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="panel panel-primary">
-                        <div class="panel-heading">Venda</div>
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label class="pull-left">Pedidos</label>
+                                    <div jsf:rendered="#{empty vendaController.pedidoSelecionado}">
+                                        <button class="btn btn-default btn-xs pull-right"
+                                                title="Gerar Pedido Aleatório" jsf:id="id-123"
+                                                jsf:action="#{vendaController.grerarPedidoAleatorio()}"> Gerar Pedido Aleatório
+                                            <f:ajax render="@form" execute="@form"/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="panel-body">
                             <div class="row" jsf:rendered="#{empty vendaController.pedidoSelecionado}">
                                 <div class="col-lg-12">
@@ -97,8 +110,9 @@
                                                             </p:column>
 
                                                             <p:column headerText="Valor Unitário" width="15%">
-                                                                <h:outputText value="#{pro.value * pro.key.valor}">
-                                                                    <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
+                                                                <h:outputText value="#{pro.key.valor}">
+                                                                    <f:convertNumber locale="pt_BR" type="currency"
+                                                                                     minFractionDigits="2"/>
                                                                 </h:outputText>
                                                             </p:column>
 
@@ -108,7 +122,8 @@
 
                                                             <p:column headerText="Valor" width="15%">
                                                                 <h:outputText value="#{pro.value * pro.key.valor}">
-                                                                    <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
+                                                                    <f:convertNumber locale="pt_BR" type="currency"
+                                                                                     minFractionDigits="2"/>
                                                                 </h:outputText>
                                                             </p:column>
 
@@ -128,7 +143,8 @@
                                                         <label>Total: </label>
                                                         <h:outputText
                                                                 value="#{vendaController.pedidoSelecionado.total}">
-                                                            <f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
+                                                            <f:convertNumber locale="pt_BR" type="currency"
+                                                                             minFractionDigits="2"/>
                                                         </h:outputText>
                                                     </div>
 
@@ -147,12 +163,13 @@
                                     <a class="btn btn-default btn-xs pull-left"
                                        jsf:outcome="lista">Voltar</a>
 
-                                    <button class="btn btn-primary btn-xs pull-right"
-                                            title="Novo" jsf:id="id-vender"
-                                            jsf:action="#{vendaController.vender}"> Vender
-                                        <f:ajax render="@form" execute="@this"/>
-                                    </button>
-
+                                    <div jsf:rendered="#{not empty vendaController.pedidoSelecionado}">
+                                        <button class="btn btn-primary btn-xs pull-right"
+                                                title="Novo" jsf:id="id-vender"
+                                                jsf:action="#{vendaController.vender}"> Vender
+                                            <f:ajax render="@form" execute="@this"/>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
