@@ -6,7 +6,9 @@
 package br.com.dwd.sapataria.controller;
 
 import br.com.dwd.sapataria.model.Usuario;
+
 import br.com.dwd.sapataria.task.SecurityTask;
+import br.com.dwd.sapataria.controller.Controller;
 
 import org.hibernate.Session;
 import org.hibernate.mapping.Map;
@@ -25,7 +27,7 @@ import java.io.Serializable;
 
 @Named
 @RequestScoped
-public class SecurityController implements Serializable {
+public class SecurityController extends Controller  implements Serializable {
 
 	private static final String LOGIN = "/sapataria/login.xhtml";
 	private static final String PRINCIPAL = "/sapataria/restrito/principal.xhtml";
@@ -61,13 +63,19 @@ public class SecurityController implements Serializable {
 			session.setAttribute("login", usuarioEcontrado);
 			Faces.redirect(PRINCIPAL);
 		} else {
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "teste", "teste"));
+			/*FacesContext context = FacesContext.getCurrentInstance();*/
+			messageFatal(getFacesContext(), "Impossível fazer login!", "Usuário ou senha inválidos.");
 			Faces.redirect(LOGIN);
 		}
 
 	}
 
+	private FacesContext getFacesContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		return context;
+	}
+	
 	public void logout() throws IOException {
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
 		session.invalidate();
