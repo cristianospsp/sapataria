@@ -84,4 +84,12 @@ public class ProdutoTask implements Serializable {
 		param.put("qtd", 10);
 		return repository.listBy(Produto.PRODUTO_FIND_QTD_ESTOQUE_MENOR_QUE, param);
 	}
+
+	@Transactional
+	public void baixaEstoque(Map.Entry<Produto, Integer> p) {
+		Produto produto = repository.find(p.getKey().getId());
+		int qtdAtual = produto.getQuantidadeTotal() - p.getValue();
+		produto.setQuantidadeTotal(qtdAtual);
+		repository.update(produto);
+	}
 }

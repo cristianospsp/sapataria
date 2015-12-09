@@ -4,18 +4,20 @@ package br.com.dwd.sapataria.controller;
 import br.com.dwd.sapataria.model.Pedido;
 import br.com.dwd.sapataria.model.Produto;
 import br.com.dwd.sapataria.model.Venda;
+import br.com.dwd.sapataria.task.PedidoTask;
+import br.com.dwd.sapataria.task.ProdutoTask;
 import br.com.dwd.sapataria.task.VendaTask;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 
 /**
@@ -23,53 +25,78 @@ import java.util.List;
  */
 @Named
 @ViewScoped
-public class VendaController implements Serializable {
+public class VendaController extends Controller implements Serializable {
 
 	private List<Venda> vendas = new ArrayList<>();
 	private List<Pedido> pedidos = new ArrayList<>();
 	@Inject
 	private VendaTask task;
 	private Pedido pedidoSelecionado;
-
+	@Inject
+	private PedidoTask pedidoTask;
+	@Inject
+	private ProdutoTask produtoTask;
 
 	@PostConstruct
 	public void init() {
 		refresh();
-		pedidos.addAll(geraPedido());
+		atualizaPedidos();
 	}
 
-	private List<Pedido> geraPedido() {
-		List<Pedido> pedidos = new ArrayList<>();
+	public void grerarPedidoAleatorio() {
 
-		Produto adidas = new Produto("Tenis", "Adidas", "Branco", 340.00);
-		Produto nike = new Produto("Tenis", "Nike", "Azul", 350.00);
-		Produto mizuno = new Produto("Tenis", "Mizuno", "Preto", 450.00);
+		pedidoTask.add(getPedido());
+		atualizaPedidos();
+	}
 
-		Produto chinelo = new Produto("Chinelo", "Havaianas", "Azul", 40.00);
-		Produto sapato = new Produto("Sapato", "Nosferato", "Preto", 150.00);
-		Produto sandalia = new Produto("Sandália", "Azaléia", "Brancao", 50.00);
 
-		Pedido pedido1 = new Pedido();
-		pedido1.setNumero(123456l);
-		pedido1.setVendedor("Kebra Barraco");
-		pedido1.adicionaProduto(adidas, 1);
-		pedido1.adicionaProduto(nike, 1);
-		pedido1.adicionaProduto(mizuno, 1);
+	private Pedido getPedido() {
+		Pedido pedido = new Pedido();
 
-		Pedido pedido2 = new Pedido();
-		pedido2.setNumero(44444l);
-		pedido2.setVendedor("Kebra Apartamento");
-		pedido2.adicionaProduto(chinelo, 1);
-		pedido2.adicionaProduto(sapato, 1);
-		pedido2.adicionaProduto(sandalia, 1);
+		List<Produto> produtos = produtoTask.findAll();
 
-		pedidos.addAll(Arrays.asList(pedido1, pedido2));
+		int inicial = 0;
+		boolean added = false;
+		for (Produto p : produtos) {
+			Integer qtdAtual = p.getQuantidadeTotal();
+			Integer qtd = qtdAtual == 1 ? 1 : qtdAtual >= 5 ? 2 : qtdAtual >= 8 ? 1 : qtdAtual >= 12 ? 3 : 1;
 
-		return pedidos;
+			if (inicial < 1) {
+				pedido.adicionaProduto(p, qtd);
+				added = true;
+			} else if ((inicial % 2) == 0) {
+				pedido.adicionaProduto(p, qtd);
+				added = true;
+			}
+			/*else {
+				pedido.adicionaProduto(p, qtd);
+			}*/
+
+			inicial++;
+		}
+
+		if (added && ((new Random().nextInt(10) % 2) == 0)) {
+			pedido.setVendedor(((new Random().nextInt(10) % 2) == 0) ? "João Donato" : "Ivonete de Holanda");
+		} else if(added) {
+			pedido.setVendedor(((new Random().nextInt(10) % 2) == 0) ? "Mariza Mouritano" : "Maria Aleluia");
+		}
+
+
+		String numeroPedidoString = LocalDateTime.now().getSecond() + "" + new Random().nextInt(100000);
+
+		Long numeroPedido = Long.valueOf(numeroPedidoString + (pedido.getListaProdutos().size() + new Random().nextInt(100000)));
+
+		pedido.setNumero(numeroPedido);
+
+		return pedido;
 	}
 
 	public void refresh() {
 		vendas = task.findAll();
+	}
+
+	public void atualizaPedidos() {
+		pedidos = pedidoTask.findAll();
 	}
 
 	public List<Venda> getVendas() {
@@ -78,11 +105,17 @@ public class VendaController implements Serializable {
 
 
 	public String vender() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		context.addMessage("Teste", new FacesMessage(FacesMessage.SEVERITY_INFO, "Vendeu ! ! !", "Vendeu ! ! !"));
-		//FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-		//Faces.redirect("/sapataria/restrito/venda/lista.xhtml");
+		Venda venda = new Venda(pedidoSelecionado.getVendedor(), pedidoSelecionado.getTotal());
+		task.insertOrUpdate(venda);
+		pedidoSelecionado.getListaProdutos().stream().forEach(p -> produtoTask.baixaEstoque(p));
+		messageSucess(getFacesContext(), "Produto Vendido", "Baixa no estoque realizada com sucesso !");
 		return "lista?faces-redirect=true";
+	}
+
+	private FacesContext getFacesContext() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.getExternalContext().getFlash().setKeepMessages(true);
+		return context;
 	}
 
 	public List<Pedido> getPedidos() {
