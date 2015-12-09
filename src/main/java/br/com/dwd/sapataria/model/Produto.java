@@ -60,9 +60,6 @@ public class Produto implements Serializable {
 	private int quantidadeTotal;
 
 	@NotNull
-	private int quantidadeMinima;
-
-	@NotNull
 	private double valor;
 
 	public Produto() {
@@ -121,14 +118,6 @@ public class Produto implements Serializable {
 
 	public void setQuantidadeTotal(int qtdTotal) {
 		this.quantidadeTotal = qtdTotal;
-	}
-
-	public int getQuantidadeMinima() {
-		return quantidadeMinima;
-	}
-
-	public void setQuantidadeMinima(int quantidadeMinima) {
-		this.quantidadeMinima = quantidadeMinima;
 	}
 
 	public double getValor() {
