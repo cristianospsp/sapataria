@@ -84,7 +84,7 @@
 												</p:column>
 												<p:column headerText="Vlr Venda">
 													<h:outputText value="#{produto.valor}">
-													<f:convertNumber currencyCode="BRL" type="currency"/>
+													<f:convertNumber locale="pt_BR" type="currency" minFractionDigits="2"/>
 													</h:outputText>
 												</p:column>
 
