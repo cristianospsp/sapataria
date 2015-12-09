@@ -25,6 +25,10 @@ import java.util.Objects;
 	 @NamedQuery(
 			name = Produto.PRODUTO_FIND_BY_NOME,
 			query = "select p from Produto p where p.nome = :nome"
+	 ),
+	 @NamedQuery(
+			name = Produto.PRODUTO_FIND_QTD_ESTOQUE_MENOR_QUE,
+			query = "select p from Produto p where p.quantidadeTotal < :qtd"
 	 )
 })
 public class Produto implements Serializable {
@@ -34,6 +38,7 @@ public class Produto implements Serializable {
 	public static final String PRODUTO_LIST_ALL = "Produto.listAll";
 	public static final String PRODUTO_FIND_ID = "Produto.findId";
 	public static final String PRODUTO_FIND_BY_NOME = "Produto.findByNome";
+	public static final String PRODUTO_FIND_QTD_ESTOQUE_MENOR_QUE = "Produto.FindQtdEstoqueMenorQue";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
