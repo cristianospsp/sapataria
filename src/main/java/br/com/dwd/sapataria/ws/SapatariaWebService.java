@@ -16,6 +16,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Cristiano on 13/10/15.
@@ -30,8 +31,7 @@ public class SapatariaWebService {
 	@Path("/hello")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String dizOla() {
-		String teste = "Hello Kebra Barraco ! ! !";
-		return teste;
+		return "Hello Teste ! ! !";
 	}
 
 	@GET
@@ -47,7 +47,7 @@ public class SapatariaWebService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String produtoByCodigo(@PathParam("codigo") String codigo) {
 
-		Produto produto = (codigo != null && !codigo.isEmpty()) ? task.findById(Long.valueOf(codigo)) : null;
+		Produto produto = (codigo != null && !codigo.isEmpty()) ? task.findById(Long.valueOf(codigo)) : new Produto();
 
 		JSONObject jsonObject = new JSONObject();
 
@@ -61,11 +61,7 @@ public class SapatariaWebService {
 			e.printStackTrace();
 		}
 
-		Gson gson = new Gson();
-		String s = gson.toJson(produto);
-
-		return s;
-//		return jsonObject.toString();
+		return new Gson().toJson(produto);
 	}
 
 
@@ -73,16 +69,8 @@ public class SapatariaWebService {
 	@Path("all")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String allProducts() {
-		List<Produto> produtos = task.findAll();
-
-		String produtosGson = new Gson().toJson(produtos);
-
-		List<Produto> prods = new Gson().fromJson(produtosGson, new TypeToken<List<Produto>>(){}.getType());
-
-
-
-		return produtosGson;
-
+		/*		List<Produto> prods = new Gson().fromJson(new Gson().toJson(produtos), new TypeToken<List<Produto>>(){}.getType());*/
+		return new Gson().toJson(task.findAll());
 	}
 
 

@@ -1,5 +1,6 @@
 package br.com.dwd.sapataria.ws;
 
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +8,7 @@ import java.util.Set;
 /**
  * Created by Cristiano on 14/10/15.
  */
+@ApplicationPath("/rest")
 public class ApplicationJAXRS extends Application {
 
 	@Override
