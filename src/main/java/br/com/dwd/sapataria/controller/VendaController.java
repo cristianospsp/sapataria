@@ -108,6 +108,7 @@ public class VendaController extends Controller implements Serializable {
 		Venda venda = new Venda(pedidoSelecionado.getVendedor(), pedidoSelecionado.getTotal());
 		task.insertOrUpdate(venda);
 		pedidoSelecionado.getListaProdutos().stream().forEach(p -> produtoTask.baixaEstoque(p));
+		pedidoTask.delete(pedidoSelecionado);
 		messageSucess(getFacesContext(), "Produto Vendido", "Baixa no estoque realizada com sucesso !");
 		return "lista?faces-redirect=true";
 	}
