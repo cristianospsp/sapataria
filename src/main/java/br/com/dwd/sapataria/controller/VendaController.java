@@ -59,7 +59,7 @@ public class VendaController extends Controller implements Serializable {
 		boolean added = false;
 		for (Produto p : produtos) {
 			Integer qtdAtual = p.getQuantidadeTotal();
-			Integer qtd = qtdAtual == 1 ? 1 : qtdAtual >= 5 ? 2 : qtdAtual >= 8 ? 1 : qtdAtual >= 12 ? 3 : 1;
+			Integer qtd = (qtdAtual == 1 || qtdAtual <= 5) ? 1 : (qtdAtual > 5 || qtdAtual <= 8 ) ? 2 : (qtdAtual > 8 || qtdAtual < 15 ) ? 3 : qtdAtual >= 15 ? 3 : 1;
 
 			if (inicial < 1) {
 				pedido.adicionaProduto(p, qtd);
@@ -68,10 +68,6 @@ public class VendaController extends Controller implements Serializable {
 				pedido.adicionaProduto(p, qtd);
 				added = true;
 			}
-			/*else {
-				pedido.adicionaProduto(p, qtd);
-			}*/
-
 			inicial++;
 		}
 

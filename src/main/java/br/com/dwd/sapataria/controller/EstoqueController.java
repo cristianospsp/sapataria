@@ -23,7 +23,7 @@ public class EstoqueController implements Serializable {
 	private ProdutoTask task;
 
 	public void atualizar() {
-		produtos = task.findQtdMenorQueDez();
+		produtos = task.findQtdMenorQueCinco();
 	}
 
 	public List<Produto> getProdutos() {

@@ -38,6 +38,10 @@ public class UsuarioTask implements Serializable {
 	}
 
 	public List<Usuario> listByName(String nome) {
+		if (nome == null || nome.isEmpty()) {
+			return repository.listAll();
+		}
+
 		Map<String, Object> param = new HashMap<>();
 		param.put("nome", "%" + nome + "%");
 		return repository.listBy(Usuario.USUARIO_LIST_NAME, param);
