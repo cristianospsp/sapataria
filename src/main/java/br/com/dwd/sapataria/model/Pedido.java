@@ -15,8 +15,6 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	/*@OneToMany
-	private List<Produto> produtos = new ArrayList<>();*/
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	@CollectionTable(joinColumns = {@JoinColumn(name = "idPedido",referencedColumnName = "id")})

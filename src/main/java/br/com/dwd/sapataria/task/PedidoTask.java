@@ -28,4 +28,8 @@ public class PedidoTask  implements Serializable {
 		return repository.listAll();
 	}
 
+	@Transactional
+	public void delete(Pedido pedidoSelecionado) {
+		repository.delete(repository.find(pedidoSelecionado.getId()));
+	}
 }
