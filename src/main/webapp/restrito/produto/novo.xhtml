@@ -20,11 +20,19 @@
 					<div class="panel panel-primary">
 						<div class="panel-heading">Produto</div>
 						<div class="panel-body">
-						
+						<div class="col-lg-6">
+								<div class="form-group">
+									<label>Código: </label> <input class="form-control"
+										placeholder="Código" type="text" jsf:id="id-codigo"
+										jsf:label="Código" jsf:required="true"
+										jsf:requiredMessage="Insiria um código para o produto!"  
+										jsf:value="#{produtoController.produto.codigo}"/>
+								</div>
+							</div>
 							<div class="col-lg-6">
 								<div class="form-group">
 									<label>Descrição: </label> <input class="form-control"
-										placeholder="Descrição" type="text" jsf:id="id-descricao"
+										placeholder="Nome do produto" type="text" jsf:id="id-descricao"
 										jsf:label="Descrição" jsf:required="true"
 										jsf:requiredMessage="Insiria uma descrição!"  
 										jsf:value="#{produtoController.produto.nome}"/>

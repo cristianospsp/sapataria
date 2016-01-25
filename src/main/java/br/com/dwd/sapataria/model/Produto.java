@@ -29,7 +29,11 @@ import java.util.Objects;
 	 @NamedQuery(
 			name = Produto.PRODUTO_FIND_QTD_ESTOQUE_MENOR_QUE,
 			query = "select p from Produto p where p.quantidadeTotal < :qtd"
-	 )
+	 ),
+	 @NamedQuery(
+				name = Produto.PRODUTO_FIND_BY_CODIGO,
+				query = "select p from Produto p where p.codigo = :codigo"
+		 )
 })
 public class Produto implements Serializable {
 
@@ -38,11 +42,15 @@ public class Produto implements Serializable {
 	public static final String PRODUTO_LIST_ALL = "Produto.listAll";
 	public static final String PRODUTO_FIND_ID = "Produto.findId";
 	public static final String PRODUTO_FIND_BY_NOME = "Produto.findByNome";
+	public static final String PRODUTO_FIND_BY_CODIGO = "Produto.findByCodigo";
 	public static final String PRODUTO_FIND_QTD_ESTOQUE_MENOR_QUE = "Produto.FindQtdEstoqueMenorQue";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull
+	private Long codigo;
 
 	@NotNull
 	private String nome;
@@ -80,6 +88,15 @@ public class Produto implements Serializable {
 		this.id = id;
 	}
 
+
+	public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long	 codigo) {
+		this.codigo = codigo;
+	}
+	
 	public String getNome() {
 		return nome;
 	}

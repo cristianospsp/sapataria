@@ -35,20 +35,27 @@ public class ProdutoController extends Controller implements Serializable {
 
 	public String salvar() throws IOException {
 		String retorno = null;
+		// verificar se é um novo produto ou uma atualizacao
 		if (produto.getId() != null) {
-			task.update(produto);
-			messageSucess(getFacesContext(), "Salvo", "Dados Salvo Com Sucesso!");
-			retorno = "lista.xhtml?faces-redirect=true";
-		} else {
-			if (task.findByName(produto.getNome()) == null) {
-				task.add(produto);
+			if (task.findbyCodigo(produto.getCodigo()) == null) {
+				task.update(produto);
 				messageSucess(getFacesContext(), "Salvo", "Dados Salvo Com Sucesso!");
 				retorno = "lista.xhtml?faces-redirect=true";
 			} else {
-				messageError(getFacesContext(), "Nome Inválido", "Existe um produto cadastrado com esse nome.");
+				messageError(getFacesContext(), "Código inválido!", "Existe um produto cadastrado com esse código.");
 			}
+	}else
+
+	{
+		if (task.findByName(produto.getNome()) == null) {
+			task.add(produto);
+			messageSucess(getFacesContext(), "Salvo", "Dados Salvo Com Sucesso!");
+			retorno = "lista.xhtml?faces-redirect=true";
+		} else {
+			messageError(getFacesContext(), "Nome Inválido", "Existe um produto cadastrado com esse nome.");
 		}
-		return retorno;
+	} return retorno;
+
 	}
 
 	private FacesContext getFacesContext() {

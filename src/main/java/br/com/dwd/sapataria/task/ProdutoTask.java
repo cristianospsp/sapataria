@@ -14,7 +14,7 @@ import java.util.Map;
 
 @Named
 public class ProdutoTask implements Serializable {
- 
+
 	@Inject
 	private Repository<Produto> repository;
 
@@ -56,6 +56,16 @@ public class ProdutoTask implements Serializable {
 		}
 	}
 
+	public Produto findbyCodigo(Long codigo) {
+		Map<String, Object> param = new HashMap<>();
+		param.put("codigo", codigo);
+		try {
+			return repository.findBy(Produto.PRODUTO_FIND_BY_CODIGO, param);
+		} catch (NoResultException nre) {
+			return null;
+		}
+	}
+
 	@Transactional
 	public Produto update(Produto produto) {
 		produto = repository.update(produto);
@@ -64,7 +74,7 @@ public class ProdutoTask implements Serializable {
 
 	public List<Produto> listAvisos() {
 		Map<String, Object> param = new HashMap<>();
-		//param.put("quantidadeMinima", );
+		// param.put("quantidadeMinima", );
 		return repository.listBy(Produto.PRODUTO_LIST_NAME, param);
 	}
 
@@ -77,7 +87,6 @@ public class ProdutoTask implements Serializable {
 	public List<Produto> findAll() {
 		return repository.listAll();
 	}
-
 
 	public List<Produto> findQtdMenorQueCinco() {
 		Map<String, Object> param = new HashMap<>();
