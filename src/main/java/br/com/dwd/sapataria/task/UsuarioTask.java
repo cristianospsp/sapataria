@@ -3,6 +3,7 @@ package br.com.dwd.sapataria.task;
 import br.com.dwd.sapataria.dao.Repository;
 import br.com.dwd.sapataria.model.Produto;
 import br.com.dwd.sapataria.model.Usuario;
+import br.com.dwd.sapataria.controller.UsuarioController;
 
 import javax.inject.Inject;
 import javax.inject.Named;
