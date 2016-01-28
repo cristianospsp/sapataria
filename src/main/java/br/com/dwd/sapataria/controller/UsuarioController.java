@@ -72,9 +72,9 @@ public class UsuarioController extends Controller implements Serializable {
 		MessageDigest mDigest;
 		try {
 			mDigest = MessageDigest.getInstance("MD5");
-			byte[] valorMD5 = mDigest.digest(senha.getBytes("UTF-8"));
+			byte[] arrayPassword = mDigest.digest(senha.getBytes("UTF-8"));
 			StringBuffer sb = new StringBuffer();
-			for (byte b : valorMD5) {
+			for (byte b : arrayPassword) {
 				sb.append(Integer.toHexString((b & 0xFF) | 0x100).substring(1, 3));
 			}
 			return sb.toString();
